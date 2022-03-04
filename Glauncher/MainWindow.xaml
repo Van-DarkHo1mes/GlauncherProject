@@ -20,7 +20,7 @@
                             <Border Name="border" 
                         BorderThickness="1"
                         Padding="4,2" 
-                        CornerRadius="3">
+                        CornerRadius="6">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
