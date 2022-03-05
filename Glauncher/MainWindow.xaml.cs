@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GLauncher
+namespace Glauncher
 {
     public partial class Program
     {
@@ -48,5 +48,12 @@ namespace GLauncher
         {
             Application.Current.Shutdown();
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e) //ОТкрывает окно с добавлением программ
+        {
+            AddApp addApp = new AddApp();
+            addApp.ShowDialog();
+        }
+
     }
 }
