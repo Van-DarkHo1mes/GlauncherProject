@@ -69,20 +69,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="TextBox" TargetType="TextBox">
-            <Style.Setters>
-                <Setter Property="SelectionTextBrush" Value="Transparent"/>
-                <Setter Property="CaretBrush" Value="Transparent"/>
-                <Setter Property="SelectionBrush" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
-                
-            </Style.Setters>
-            <Style.Triggers>
-                
-            </Style.Triggers>
-        </Style>
+       
 
     </Window.Resources>
 
@@ -96,7 +83,6 @@
                 <Border.Background>
                     <ImageBrush ImageSource="A:\Kursa4\GlauncherProject\Glauncher\AddFon6.jpg" Stretch="UniformToFill"/>
                 </Border.Background>
-                <TextBox Text="TextBox" TextWrapping="Wrap" Margin="160,132,160,109"/>
             </Border>
             <StackPanel Margin="30,100,50,70">
 
