@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Glauncher"
         mc:Ignorable="d"
         Title="AddApp" 
-        Height="200" 
-        Width="300"
+        Height="300" 
+        Width="400"
         WindowStyle="None" 
         Background="{x:Null}" 
         Foreground="{x:Null}" 
@@ -18,6 +18,7 @@
         <Style x:Key="CloseButton" TargetType="Button">
             <Style.Setters>
                 <Setter Property="Foreground" Value="White"/>
+
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -39,25 +40,137 @@
 
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="AddButton" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="FontFamily" Value="Calibry"/>
+                <Setter Property="FontSize" Value="23"/>
+                <Setter Property="Foreground" Value="#B3B3B3"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="border" 
+                        BorderThickness="1"
+                        Padding="4,2" 
+                        CornerRadius="3"
+                        BorderBrush="White">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TextBox" TargetType="TextBox">
+            <Style.Setters>
+                <Setter Property="SelectionTextBrush" Value="Transparent"/>
+                <Setter Property="CaretBrush" Value="Transparent"/>
+                <Setter Property="SelectionBrush" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+                
+            </Style.Setters>
+            <Style.Triggers>
+                
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
 
     <Border 
         CornerRadius="12"
         Background="Black"
         MouseDown="MovingWindow" >
-        <Button 
+
+        <Grid>
+            <Border CornerRadius="12" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center"   VerticalAlignment="Top" Width="400" Height="266" Margin="0,34,0,0">
+                <Border.Background>
+                    <ImageBrush ImageSource="A:\Kursa4\GlauncherProject\Glauncher\AddFon6.jpg" Stretch="UniformToFill"/>
+                </Border.Background>
+                <TextBox Text="TextBox" TextWrapping="Wrap" Margin="160,132,160,109"/>
+            </Border>
+            <StackPanel Margin="30,100,50,70">
+
+                <Grid Height="170">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1" Margin="78,38,0,18"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="12,0,0,0" Text="Название:" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Calibri" FontSize="17" Foreground="White"/>
+
+                    <Grid>
+
+                        <TextBox 
+                        x:Name="AddName"  
+                        HorizontalAlignment="Left" 
+                        Margin="91,0,0,0"
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Center" 
+                        Width="219"  
+                        FontFamily="Calibri" 
+                        FontSize="17"  
+                        CaretBrush="White" 
+                        BorderBrush="{x:Null}" 
+                        Height="19" 
+                        SelectionTextBrush="{x:Null}" 
+                        SelectionBrush="{x:Null}" 
+                        Background="{x:Null}" 
+                        Foreground="White"
+                        BorderThickness="0"/>
+
+                        <TextBlock IsHitTestVisible="False" Text="поле для ввода" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Margin="151,0,0,0">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=AddName}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                    </Grid>
+
+                </Grid>
+
+            </StackPanel>
+            <Button Width="120" 
+                    Margin="140,235,140,34"
+                    Style="{StaticResource AddButton}"
+                    Content="Добавить" FontSize="20"/>
+
+
+            <Button 
                 Width="24" 
                 Height="31" 
-                Style="{StaticResource CloseButton}"   
-                Grid.Column="5"  
+                Style="{StaticResource CloseButton}"  
                 VerticalAlignment="Top"   
                 FontSize="25" 
                 FontFamily="Consolas" 
                 Content="x" 
                 FontWeight="Bold" 
-                Margin="251,-4,25,0" 
-                Click="CloseAddButton_Click">
+                Margin="351,-4,25,0" 
+                Click="CloseAddButton_Click"/>
 
-        </Button>
+            <Image Margin="-10,28,-10,271" Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1"/>
+
+            <TextBlock  HorizontalAlignment="Center" Margin="0,40,0,0" Text="Добавление программы" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="Calibri" FontSize="17"  />
+
+
+        </Grid>
+
     </Border>
 </Window>

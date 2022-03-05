@@ -49,7 +49,7 @@ namespace Glauncher
             Application.Current.Shutdown();
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e) //ОТкрывает окно с добавлением программ
+        private void AddButton_Click(object sender, RoutedEventArgs e) //Открывает окно с добавлением программ
         {
             AddApp addApp = new AddApp();
             addApp.ShowDialog();
