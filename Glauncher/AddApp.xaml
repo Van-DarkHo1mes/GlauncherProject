@@ -18,7 +18,6 @@
         <Style x:Key="CloseButton" TargetType="Button">
             <Style.Setters>
                 <Setter Property="Foreground" Value="White"/>
-
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -69,7 +68,20 @@
             </Style.Triggers>
         </Style>
 
-       
+        <Style x:Key="MenuItem" TargetType="MenuItem">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
 
     </Window.Resources>
 
@@ -83,8 +95,9 @@
                 <Border.Background>
                     <ImageBrush ImageSource="A:\Kursa4\GlauncherProject\Glauncher\AddFon6.jpg" Stretch="UniformToFill"/>
                 </Border.Background>
+
             </Border>
-            <StackPanel Margin="30,100,50,70">
+            <StackPanel Margin="40,66,40,104">
 
                 <Grid Height="170">
                     <Grid.RowDefinitions>
@@ -92,17 +105,18 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1" Margin="78,38,0,18"/>
+                    <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1" Margin="78,36,0,20"/>
+                    <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png"  Height="1" Width="242" Margin="78,37,0,18" Grid.Row="1"/>
                     <TextBlock HorizontalAlignment="Left" Margin="12,0,0,0" Text="Название:" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Calibri" FontSize="17" Foreground="White"/>
 
-                    <Grid>
+                    <Grid Margin="0,0,0,56" Grid.RowSpan="2">
 
                         <TextBox 
                         x:Name="AddName"  
                         HorizontalAlignment="Left" 
-                        Margin="91,0,0,0"
+                        Margin="91,17,0,0"
                         TextWrapping="Wrap" 
-                        VerticalAlignment="Center" 
+                        VerticalAlignment="Top" 
                         Width="219"  
                         FontFamily="Calibri" 
                         FontSize="17"  
@@ -115,7 +129,7 @@
                         Foreground="White"
                         BorderThickness="0"/>
 
-                        <TextBlock IsHitTestVisible="False" Text="поле для ввода" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Margin="151,0,0,0">
+                        <TextBlock IsHitTestVisible="False" Text="поле для ввода" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="150,19,0,0">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -128,6 +142,22 @@
                             </TextBlock.Style>
                         </TextBlock>
 
+                    </Grid>
+
+                    <Grid Grid.Row="1" >
+
+                        <Border Margin="17,15,247,15" CornerRadius="3" BorderBrush="White" Background="Transparent" BorderThickness="1">
+                            <DockPanel>
+                                <Menu DockPanel.Dock="Top" Height="24" Width="54" Background="{x:Null}" Foreground="White">
+                                    <MenuItem BorderThickness="0" Header="  Тип" Height="24" Width="54" FontFamily="Calibri" FontSize="17" Foreground="White" HorizontalAlignment="Left" HorizontalContentAlignment="Left" >
+                                        <MenuItem Header="Приложение"  FontFamily="Calibri" Click="MenuItemApp_Click" Style="{StaticResource MenuItem}"/>
+                                        <MenuItem Header="Игра"  FontFamily="Calibri" Click="MenuItemGame_Click" Style="{StaticResource MenuItem}"/>
+                                        <MenuItem Header="Другое"  FontFamily="Calibri" Click="MenuItemOther_Click" Style="{StaticResource MenuItem}"/>
+                                    </MenuItem>
+                                </Menu>
+                            </DockPanel>
+                        </Border>
+                        <TextBlock x:Name="TextBlockType" HorizontalAlignment="Left" Margin="94,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="216" FontSize="17" FontFamily="Calibri" Foreground="White"/>
                     </Grid>
 
                 </Grid>

@@ -17,7 +17,7 @@ namespace Glauncher
     {
         public static AddApp app;
 
-        private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна на экране
+        private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна добавления на экране
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
@@ -29,11 +29,30 @@ namespace Glauncher
         {
             InitializeComponent();
             app = this;
+
         }
 
-        private void CloseAddButton_Click(object sender, RoutedEventArgs e)
+        private void CloseAddButton_Click(object sender, RoutedEventArgs e)  //Мето закрытия окна добавления
         {
-            app.Close() ;
+            app.Close();
+        }
+
+
+
+
+        private void MenuItemApp_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlockType.Text = "Приложение";
+        }
+
+        private void MenuItemGame_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlockType.Text = "Игра";
+        }
+
+        private void MenuItemOther_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlockType.Text = "Другое";
         }
 
     }

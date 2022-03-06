@@ -16,7 +16,7 @@
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="Button">
+                        <ControlTemplate TargetType="{x:Type Button}">
                             <Border Name="border" 
                         BorderThickness="1"
                         Padding="4,2" 
