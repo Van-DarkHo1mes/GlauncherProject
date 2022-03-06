@@ -15,6 +15,34 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                        BorderBrush="White"
+                        BorderThickness="1"
+                        Padding="4,2" 
+                        CornerRadius="3" 
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#191919"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="CloseButton" TargetType="Button">
             <Style.Setters>
                 <Setter Property="Foreground" Value="White"/>
@@ -97,7 +125,7 @@
                 </Border.Background>
 
             </Border>
-            <StackPanel Margin="40,66,40,104">
+            <StackPanel Margin="40,66,40,62">
 
                 <Grid Height="170">
                     <Grid.RowDefinitions>
@@ -105,8 +133,13 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
+
+                    <Image Source="/line.png" Margin="86,37,8,18" Grid.Row="2" Stretch="Fill" Height="1"/>
+
                     <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1" Margin="78,36,0,20"/>
                     <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png"  Height="1" Width="242" Margin="78,37,0,18" Grid.Row="1"/>
+
+
                     <TextBlock HorizontalAlignment="Left" Margin="12,0,0,0" Text="Название:" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Calibri" FontSize="17" Foreground="White"/>
 
                     <Grid Margin="0,0,0,56" Grid.RowSpan="2">
@@ -158,6 +191,11 @@
                             </DockPanel>
                         </Border>
                         <TextBlock x:Name="TextBlockType" HorizontalAlignment="Left" Margin="94,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="216" FontSize="17" FontFamily="Calibri" Foreground="White"/>
+                    </Grid>
+
+                    <Grid Margin="0,56,0,0" Grid.RowSpan="2" Grid.Row="1">
+                        <Button Content="Путь" Style="{StaticResource MenuButtonStyle}" Margin="17,15,247,15" Click="Button_Click" FontFamily="Calibri" FontSize="17" Height="26.3333333333333"></Button>
+                        <TextBlock x:Name="TextBlockFileName" Margin="94,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="216" FontSize="17" FontFamily="Calibri" Foreground="White"/>
                     </Grid>
 
                 </Grid>

@@ -9,12 +9,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Glauncher
 {
 
     public partial class AddApp : Window
     {
+
+        string fileName = null;
         public static AddApp app;
 
         private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна добавления на экране
@@ -55,5 +58,23 @@ namespace Glauncher
             TextBlockType.Text = "Другое";
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog()
+            {
+                Filter = "EXE|*.exe",
+                Multiselect = false,
+                ValidateNames = true
+            };
+            if(fileDialog.ShowDialog() == true)
+            {
+                fileName = fileDialog.FileName;
+
+                TextBlockFileName.Text ="...  "+fileName.Substring(fileName.LastIndexOf(@"\"));
+            }
+
+            
+
+        }
     }
 }

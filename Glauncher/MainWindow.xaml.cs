@@ -43,6 +43,7 @@ namespace Glauncher
             InitializeComponent();
             window = this;
             
+            
         }
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e) //Метод завершения работы программы
