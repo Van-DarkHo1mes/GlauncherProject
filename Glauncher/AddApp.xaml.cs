@@ -17,8 +17,21 @@ namespace Glauncher
     public partial class AddApp : Window
     {
 
-        string fileName = null;
-        public static AddApp app;
+        string fileName = null; //Имя файла
+
+        public static AddApp app; //ОбЬект текущего окна
+
+        public AddApp()
+        {
+            InitializeComponent();
+            app = this;
+
+        }
+
+        private void CloseAddButton_Click(object sender, RoutedEventArgs e)  //Метод закрытия окна добавления
+        {
+            app.Close();
+        }
 
         private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна добавления на экране
         {
@@ -28,37 +41,22 @@ namespace Glauncher
             }
         }
 
-        public AddApp()
-        {
-            InitializeComponent();
-            app = this;
-
-        }
-
-        private void CloseAddButton_Click(object sender, RoutedEventArgs e)  //Мето закрытия окна добавления
-        {
-            app.Close();
-        }
-
-
-
-
-        private void MenuItemApp_Click(object sender, RoutedEventArgs e)
+        private void MenuItemApp_Click(object sender, RoutedEventArgs e) //Тип программы 1
         {
             TextBlockType.Text = "Приложение";
         }
 
-        private void MenuItemGame_Click(object sender, RoutedEventArgs e)
+        private void MenuItemGame_Click(object sender, RoutedEventArgs e) //Тип программы 2
         {
             TextBlockType.Text = "Игра";
         }
 
-        private void MenuItemOther_Click(object sender, RoutedEventArgs e)
+        private void MenuItemOther_Click(object sender, RoutedEventArgs e) //Тип программы 3
         {
             TextBlockType.Text = "Другое";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void FileButton_Click(object sender, RoutedEventArgs e) //Метод для получения полного пути программы
         {
             OpenFileDialog fileDialog = new OpenFileDialog()
             {
@@ -73,8 +71,12 @@ namespace Glauncher
                 TextBlockFileName.Text ="...  "+fileName.Substring(fileName.LastIndexOf(@"\"));
             }
 
-            
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) //Собирает кнопку программы на странице "ВСЕ"
+        {
+            AllPage.NewProgramButton();
         }
     }
 }

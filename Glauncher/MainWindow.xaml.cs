@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 namespace Glauncher
 {
+
     public partial class Program
     {
 
@@ -27,16 +28,12 @@ namespace Glauncher
 
     public partial class MainWindow : Window
     {
+        AllPage allPage = new AllPage();
+
+
+
 
         public static MainWindow window;
-
-        private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна на экране
-        {
-            if (Mouse.LeftButton == MouseButtonState.Pressed)
-            {
-                MainWindow.window.DragMove();
-            }
-        }
 
         public MainWindow()
         {
@@ -44,6 +41,15 @@ namespace Glauncher
             window = this;
             
             
+            
+        }
+
+        private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна на экране
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                MainWindow.window.DragMove();
+            }
         }
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e) //Метод завершения работы программы
@@ -55,6 +61,11 @@ namespace Glauncher
         {
             AddApp addApp = new AddApp();
             addApp.ShowDialog();
+        }
+
+        private void AllButton_Click(object sender, RoutedEventArgs e) //Открывает страницу "ВСЕ"
+        {
+            WorkField.Content = allPage;
         }
 
     }

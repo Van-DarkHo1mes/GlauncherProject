@@ -9,7 +9,8 @@
         Icon="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\logo.png"
         Title="Glauncher" Height="639.667" Width="904.703" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" AllowsTransparency="True" >
 
-    <Window.Resources>
+    <Window.Resources >
+
         <Style x:Key="CloseButton" TargetType="Button">
             <Style.Setters>
                 <Setter Property="Foreground" Value="White"/>
@@ -58,7 +59,46 @@
             </Setter>
         </Style>
 
-
+        <Style TargetType="Button" x:Key="menuButtonStyle">
+            <Setter Property="Height" Value="70" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Height="70" Width="300">
+                            <Border x:Name="border"
+                        CornerRadius="12"
+                        BorderThickness="1"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Background="{TemplateBinding Background}">
+                                <Border x:Name="Imageborder"
+                                    CornerRadius="25"
+                                    BorderThickness="1"
+                                    BorderBrush="White"
+                                    Margin="10,10,238,10">
+                                    <Border.Background>
+                                        <ImageBrush x:Name="iconProg" ImageSource="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\fon.jpg"/>
+                                    </Border.Background>
+                                </Border>
+                            </Border>
+                            <TextBox x:Name="text" ></TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
     </Window.Resources>
 
     <Border x:Name="Menu" MouseDown="MovingWindow" CornerRadius="12" BorderBrush="Black"  BorderThickness="1" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="905" Background="Black" Margin="0,0,-2,0" RenderTransformOrigin="0.501,0.475">
@@ -71,37 +111,39 @@
                 <ColumnDefinition Width="188"/>
                 <ColumnDefinition Width="180"/>
             </Grid.ColumnDefinitions>
-            
-            <Button Style="{StaticResource MenuButtonStyle}" Content="ВСЕ" Grid.Column="2" HorizontalAlignment="Left" Margin="30,33,0,0" VerticalAlignment="Top" Width="76" FontSize="23" FontFamily="Calibri" Height="37" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Cursor="Arrow" />
-            
+
+            <Button Style="{StaticResource MenuButtonStyle}" Content="ВСЕ" Grid.Column="2" HorizontalAlignment="Left" Margin="30,33,0,0" VerticalAlignment="Top" Width="76" FontSize="23" FontFamily="Calibri" Height="37" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Cursor="Arrow" Click="AllButton_Click" />
+
             <Button Style="{StaticResource MenuButtonStyle}" Content="Приложения" Grid.Column="3" HorizontalAlignment="Left" Margin="8,33,0,0" VerticalAlignment="Top" Width="162" FontSize="23" Height="37" FontFamily="Calibri" Foreground="White"/>
-            
+
             <Button Style="{StaticResource MenuButtonStyle}" Content="Игры" Grid.Column="4" Margin="82,33,30,0" VerticalAlignment="Top" FontSize="23" Height="37" FontFamily="Calibri" Foreground="White"/>
-            
+
             <Button Style="{StaticResource MenuButtonStyle}" Grid.Column="5" Margin="20,23,15,0" VerticalAlignment="Top" FontSize="18" Height="50" FontFamily="Calibri" Foreground="White" BorderBrush="White" Click="AddButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\close.png" Margin="0,0,5,0" Width="24" Height="18" />
                     <TextBlock HorizontalAlignment="Center" Foreground="White" Width="96" ><Run Text="Добавить"/><LineBreak/><Run/><Run Text=""/><Run Text="п"/><Run Text="риложение"/></TextBlock>
                 </StackPanel>
-            
+
             </Button>
-            
+
             <Border x:Name="WorkingWindow" CornerRadius="12" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="549" Margin="-1,81,0,-547" VerticalAlignment="Top" Width="905" Grid.ColumnSpan="6">
                 <Border.Background>
                     <ImageBrush ImageSource="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\fon.jpg"/>
                 </Border.Background>
-                <Frame>
 
+                <Frame x:Name="WorkField">
+                    
                 </Frame>
             </Border>
-            
+
             <Image Margin="39,19,59,11" Source="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\logo.png" Stretch="Fill" Width="47" Height="53" RenderTransformOrigin="0.455,0.46" Grid.Column="1"/>
-            
+
             <Image Margin="140.25,5,4,0" Source="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\stripe.png" Stretch="Fill" Grid.Column="1"/>
 
             <Button Style="{StaticResource CloseButton}"   Grid.Column="5" Margin="131,-14,0,0" VerticalAlignment="Top" Width="24" Height="31" FontSize="25" FontFamily="Consolas" HorizontalAlignment="Left" Content="x" FontWeight="Bold" Click="Button_Click_Exit"/>
-            
+
             <TextBlock HorizontalAlignment="Left" Margin="10,-7,0,0" TextWrapping="Wrap" Text="Glauncher" VerticalAlignment="Top" Width="106" Height="26" FontSize="17" FontFamily="Calibri" Foreground="White" Grid.ColumnSpan="2"/>
+            
         </Grid>
     </Border>
 </Window>
