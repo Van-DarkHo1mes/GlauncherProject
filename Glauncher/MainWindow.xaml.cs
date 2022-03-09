@@ -15,23 +15,10 @@ using System.Windows.Shapes;
 
 namespace Glauncher
 {
-
-    public partial class Program
-    {
-
-    }
-
-    public partial class Game : Program
-    {
-
-    }
+    
 
     public partial class MainWindow : Window
     {
-        AllPage allPage = new AllPage();
-
-
-
 
         public static MainWindow window;
 
@@ -39,10 +26,10 @@ namespace Glauncher
         {
             InitializeComponent();
             window = this;
-            
-            
-            
+
         }
+
+        AllPage allPage = new AllPage(); //Создает объект окна добавления приложений
 
         private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна на экране
         {
@@ -63,7 +50,7 @@ namespace Glauncher
             addApp.ShowDialog();
         }
 
-        private void AllButton_Click(object sender, RoutedEventArgs e) //Открывает страницу "ВСЕ"
+        private void AllButton_Click(object sender, RoutedEventArgs e) //Открывает страницу "ВСЕ", через Frame
         {
             WorkField.Content = allPage;
         }

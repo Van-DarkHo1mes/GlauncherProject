@@ -10,7 +10,7 @@
 
     <Page.Resources>
 
-        
+
 
 
         <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
@@ -87,6 +87,8 @@
 
                 </Grid>
             </ScrollViewer>
+            <TextBlock HorizontalAlignment="Left" Margin="30,30,0,0" Text="Ваши программы" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="25" FontFamily="Calibri" Foreground="White"/>
+            <Border CornerRadius="10" Height="1"  Width="187" Margin="30,60,163,486" Background="White"/>
         </Grid>
     </Border>
 </Page>

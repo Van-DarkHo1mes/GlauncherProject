@@ -16,8 +16,12 @@ namespace Glauncher
 
     public partial class AddApp : Window
     {
+        private string nameProg; //Имя файла
+        private string fileName; //Имя(Путь) файла
+        private string iconName;
+        private string typeName;
 
-        string fileName = null; //Имя файла
+
 
         public static AddApp app; //ОбЬект текущего окна
 
@@ -41,19 +45,35 @@ namespace Glauncher
             }
         }
 
-        private void MenuItemApp_Click(object sender, RoutedEventArgs e) //Тип программы 1
+        private void MenuItemApp_Click(object sender, RoutedEventArgs e) //Тип программы ПРИЛОЖЕНИЕ
         {
-            TextBlockType.Text = "Приложение";
+            TextBlockType.Text = "Приложение"; typeName = "appProgram";
         }
 
-        private void MenuItemGame_Click(object sender, RoutedEventArgs e) //Тип программы 2
+        private void MenuItemGame_Click(object sender, RoutedEventArgs e) //Тип программы ИГРА
         {
-            TextBlockType.Text = "Игра";
+            TextBlockType.Text = "Игра"; typeName = "game";
         }
 
-        private void MenuItemOther_Click(object sender, RoutedEventArgs e) //Тип программы 3
+        private void MenuItemOther_Click(object sender, RoutedEventArgs e) //Тип программы ПРОГРАММА
         {
-            TextBlockType.Text = "Другое";
+            TextBlockType.Text = "Другое"; typeName = "program";
+        }
+
+        private void IconButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog()
+            {
+                Filter = "(*.JPEG;*.PNG)|*.jpg;*.png",
+                Multiselect = false,
+                ValidateNames = true
+            };
+            if (fileDialog.ShowDialog() == true)
+            {
+                iconName = fileDialog.FileName; //Полное имя пути файла
+
+                TextBlockIconName.Text = "...  " + iconName.Substring(iconName.LastIndexOf(@"\"));
+            }
         }
 
         private void FileButton_Click(object sender, RoutedEventArgs e) //Метод для получения полного пути программы
@@ -66,7 +86,7 @@ namespace Glauncher
             };
             if(fileDialog.ShowDialog() == true)
             {
-                fileName = fileDialog.FileName;
+                fileName = fileDialog.FileName; //Полное имя пути файла
 
                 TextBlockFileName.Text ="...  "+fileName.Substring(fileName.LastIndexOf(@"\"));
             }
@@ -76,7 +96,11 @@ namespace Glauncher
 
         private void Button_Click_1(object sender, RoutedEventArgs e) //Собирает кнопку программы на странице "ВСЕ"
         {
-            AllPage.NewProgramButton();
+            nameProg = AddName.Text;
+            AllPage.NewProgramButton(nameProg, typeName, iconName, fileName);
+            app.Close();
         }
+
+        
     }
 }

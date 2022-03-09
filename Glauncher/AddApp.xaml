@@ -125,32 +125,26 @@
                 </Border.Background>
 
             </Border>
-            <StackPanel Margin="40,66,40,62">
+            <StackPanel Margin="40,55,40,62">
 
-                <Grid Height="170">
+                <Grid Height="183">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-
-                    <Image Source="/line.png" Margin="86,37,8,18" Grid.Row="2" Stretch="Fill" Height="1"/>
-
-                    <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1" Margin="78,36,0,20"/>
-                    <Image  Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png"  Height="1" Width="242" Margin="78,37,0,18" Grid.Row="1"/>
-
-
-                    <TextBlock HorizontalAlignment="Left" Margin="12,0,0,0" Text="Название:" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Calibri" FontSize="17" Foreground="White"/>
-
-                    <Grid Margin="0,0,0,56" Grid.RowSpan="2">
+                    <Grid>
+                        <Border Background="wHITE" Width="200" Margin="90,31,30,13" Height="1" CornerRadius="10" />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Название:" TextWrapping="Wrap" FontFamily="Calibri" FontSize="17" Foreground="White" Width="74" Height="21"/>
 
                         <TextBox 
-                        x:Name="AddName"  
+                        x:Name="AddName"
+                        x:FieldModifier="private"
                         HorizontalAlignment="Left" 
-                        Margin="91,17,0,0"
+                        Margin="90,12,0,15"
                         TextWrapping="Wrap" 
-                        VerticalAlignment="Top" 
-                        Width="219"  
+                        Width="200"  
                         FontFamily="Calibri" 
                         FontSize="17"  
                         CaretBrush="White" 
@@ -162,7 +156,7 @@
                         Foreground="White"
                         BorderThickness="0"/>
 
-                        <TextBlock IsHitTestVisible="False" Text="поле для ввода" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="150,19,0,0">
+                        <TextBlock IsHitTestVisible="False" Text="поле для ввода" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="150,14,0,0">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -177,12 +171,12 @@
 
                     </Grid>
 
-                    <Grid Grid.Row="1" >
-
-                        <Border Margin="17,15,247,15" CornerRadius="3" BorderBrush="White" Background="Transparent" BorderThickness="1">
+                    <Grid Grid.Row="1">
+                        <Border Background="wHITE" Width="200" Margin="90,31,30,13" Height="1" CornerRadius="10" />
+                        <Border VerticalAlignment="Center" Margin="20,0,0,0"  CornerRadius="3" BorderBrush="White" Background="Transparent" BorderThickness="1" Width="54" Height="24" HorizontalAlignment="Left">
                             <DockPanel>
-                                <Menu DockPanel.Dock="Top" Height="24" Width="54" Background="{x:Null}" Foreground="White">
-                                    <MenuItem BorderThickness="0" Header="  Тип" Height="24" Width="54" FontFamily="Calibri" FontSize="17" Foreground="White" HorizontalAlignment="Left" HorizontalContentAlignment="Left" >
+                                <Menu Height="24" Width="54" Background="{x:Null}" Foreground="White" DockPanel.Dock="Top">
+                                    <MenuItem BorderThickness="0" Header="  Тип" Height="24" Width="54" FontFamily="Calibri" FontSize="17" Foreground="White" >
                                         <MenuItem Header="Приложение"  FontFamily="Calibri" Click="MenuItemApp_Click" Style="{StaticResource MenuItem}"/>
                                         <MenuItem Header="Игра"  FontFamily="Calibri" Click="MenuItemGame_Click" Style="{StaticResource MenuItem}"/>
                                         <MenuItem Header="Другое"  FontFamily="Calibri" Click="MenuItemOther_Click" Style="{StaticResource MenuItem}"/>
@@ -190,19 +184,64 @@
                                 </Menu>
                             </DockPanel>
                         </Border>
-                        <TextBlock x:Name="TextBlockType" HorizontalAlignment="Left" Margin="94,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="216" FontSize="17" FontFamily="Calibri" Foreground="White"/>
+
+                        <TextBlock x:Name="TextBlockType" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" FontSize="17" FontFamily="Calibri" Foreground="White" Margin="90,0,0,0" Height="19" >
+                        </TextBlock>
+                        <TextBlock IsHitTestVisible="False" Text="поле выбора" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="150,14,0,0">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=TextBlockType}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Grid>
 
-                    <Grid Margin="0,56,0,0" Grid.RowSpan="2" Grid.Row="1">
-                        <Button Content="Путь" Style="{StaticResource MenuButtonStyle}" Margin="17,15,247,15" Click="FileButton_Click" FontFamily="Calibri" FontSize="17" Height="26.3333333333333"></Button>
-                        <TextBlock x:Name="TextBlockFileName" Margin="94,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="216" FontSize="14" FontFamily="Calibri" Foreground="White"/>
+                    <Grid Grid.Row="2">
+                        <Border Background="wHITE" Width="200" Margin="90,31,30,13" Height="1" CornerRadius="10" />
+                        <Button x:Name="IconButton" Content="Путь" Style="{StaticResource MenuButtonStyle}"  Click="IconButton_Click" FontFamily="Calibri" FontSize="17" Height="24" Width="54" HorizontalAlignment="Left" Margin="20,5,5,5"></Button>
+                        <TextBlock x:Name="TextBlockIconName" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" FontSize="14" FontFamily="Calibri" Foreground="White" Height="19" HorizontalAlignment="Left" Margin="90,0,0,0"/>
+                        <TextBlock IsHitTestVisible="False" Text="выберите путь png/jpg файла" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="110,14,0,0">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=TextBlockIconName}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Border Background="wHITE" Width="200" Margin="90,31,30,13" Height="1" CornerRadius="10" />
+                        <Button x:Name="FileButton" Content="Путь" Style="{StaticResource MenuButtonStyle}"  Click="FileButton_Click" FontFamily="Calibri" FontSize="17" Height="24" Width="54" HorizontalAlignment="Left" Margin="20,5,5,5"></Button>
+                        <TextBlock x:Name="TextBlockFileName" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" FontSize="14" FontFamily="Calibri" Foreground="White" Height="19" HorizontalAlignment="Left" Margin="90,0,0,0"/>
+                        <TextBlock IsHitTestVisible="False" Text="выберите путь exe файла" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="122,14,0,0">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=TextBlockFileName}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Grid>
 
                 </Grid>
 
             </StackPanel>
             <Button Width="120" 
-                    Margin="140,235,140,34"
+                    Margin="140,238,140,31"
                     Style="{StaticResource AddButton}"
                     Content="Добавить" FontSize="20" Click="Button_Click_1"/>
 
@@ -221,7 +260,7 @@
 
             <Image Margin="-10,28,-10,271" Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1"/>
 
-            <TextBlock  HorizontalAlignment="Center" Margin="0,40,0,0" Text="Добавление программы" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="Calibri" FontSize="17"  />
+            <TextBlock  HorizontalAlignment="Center" Margin="0,34,0,0" Text="Добавление программы" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="Calibri" FontSize="17"  />
 
 
         </Grid>

@@ -23,9 +23,7 @@
                         BorderThickness="1"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         Background="{TemplateBinding Background}">
-                                
                             </Border>
-                            
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
