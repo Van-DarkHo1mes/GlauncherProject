@@ -20,14 +20,16 @@ namespace Glauncher
         {
             InitializeComponent();
             scrollfieldAll = scrollFieldAll;
-            
+            gridInfo = GridInfo;
         }
 
         private static int indent = 0; //Поле отступа следующей кнопки
         private static int index = 0; //Поле проядка кнопок программ
         
+        
 
         private static Grid scrollfieldAll; //Рабочее поле Grid куда добавляются кнопки
+        private static Grid gridInfo; //Рабочее поле для информации и запуска приложений
 
         public static void NewProgramButton(string nameProg, string typeName, string iconName, string fileName) //Собирает Программную кнопку на странице ВСЕ
         {
@@ -65,6 +67,7 @@ namespace Glauncher
             programbtn.Style = style;  
             programbtn.Margin = new Thickness(20, indent, 0, 0);
 
+            programbtn.Click += Programbtn_Click;
             scrollfieldAll.Children.Add(programbtn); // Вывод на рабочее поле
             scrollfieldAll.Children.Add(imageBorder);
             scrollfieldAll.Children.Add(textBlockName);
@@ -78,7 +81,18 @@ namespace Glauncher
             index += 1;
         }
 
-        
+        private static void Programbtn_Click(object sender, RoutedEventArgs e)
+        {
+            Border borderFon = new Border()
+            {
+                Margin = new Thickness(30, 80, 90, 60),
+                Background = Brushes.Black,
+                CornerRadius = new CornerRadius(12),
+                BorderBrush = Brushes.White,
+                BorderThickness = new Thickness(1)
+            };
+            gridInfo.Children.Add(borderFon);
 
+        }
     }
 }

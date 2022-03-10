@@ -26,6 +26,7 @@ namespace Glauncher
         {
             InitializeComponent();
             window = this;
+            
 
         }
 
@@ -54,6 +55,7 @@ namespace Glauncher
         {
             WorkField.Content = allPage;
         }
+
 
     }
 }

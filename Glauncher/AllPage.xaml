@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Glauncher"
       mc:Ignorable="d" 
-      d:DesignHeight="547" d:DesignWidth="903"
+      d:DesignHeight="547" d:DesignWidth="380"
       Title="AllPage">
 
     <Page.Resources>
@@ -78,17 +78,23 @@
     <Border Background="Transparent" CornerRadius="0,0,12,12">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="390"/>
+                <ColumnDefinition Width="513"/>
             </Grid.ColumnDefinitions>
 
-            <ScrollViewer Grid.Column="0" Margin="10,100,0,30" VerticalScrollBarVisibility="Visible"  >
-                <Grid x:Name="scrollFieldAll">
+            <Grid Grid.Column="0">
+                <ScrollViewer Grid.Column="0" Margin="20,100,0,30" VerticalScrollBarVisibility="Visible"  >
+                    <Grid x:Name="scrollFieldAll">
 
-                </Grid>
-            </ScrollViewer>
-            <TextBlock HorizontalAlignment="Left" Margin="30,30,0,0" Text="Ваши программы" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="25" FontFamily="Calibri" Foreground="White"/>
-            <Border CornerRadius="10" Height="1"  Width="187" Margin="30,60,163,486" Background="White"/>
+                    </Grid>
+                </ScrollViewer>
+                <TextBlock HorizontalAlignment="Left" Margin="40,30,0,0" Text="Ваши программы" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="25" FontFamily="Calibri" Foreground="White"/>
+                <Border CornerRadius="10" Height="1"  Width="187" Margin="40,60,163,486" Background="White"/>
+            </Grid>
+
+            <Grid x:Name="GridInfo" Grid.Column="1">
+                
+            </Grid>
         </Grid>
     </Border>
 </Page>
