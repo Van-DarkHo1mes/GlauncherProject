@@ -85,14 +85,31 @@ namespace Glauncher
         {
             Border borderFon = new Border()
             {
-                Margin = new Thickness(30, 80, 90, 60),
                 Background = Brushes.Black,
                 CornerRadius = new CornerRadius(12),
                 BorderBrush = Brushes.White,
                 BorderThickness = new Thickness(1)
             };
-            gridInfo.Children.Add(borderFon);
 
+            ImageBrush ibr = new ImageBrush();
+            ibr.ImageSource = new BitmapImage(
+                new Uri(@"C:\Users\super\Pictures\Saved Pictures\7777.jpg")
+            );
+            Border borderImageFon = new Border()
+            {
+                Height = 100,
+                Width = 393,
+                Background = ibr,
+                BorderBrush = Brushes.White,
+                BorderThickness = new Thickness(1),
+                VerticalAlignment = VerticalAlignment.Top,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                CornerRadius = new CornerRadius(12,12,0,0)
+            };
+
+            
+            gridInfo.Children.Add(borderFon);
+            gridInfo.Children.Add(borderImageFon);
         }
     }
 }
