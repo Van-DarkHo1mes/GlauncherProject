@@ -107,6 +107,11 @@ namespace Glauncher
                 CornerRadius = new CornerRadius(12,12,0,0)
             };
 
+            Button playButton = new Button() 
+            {
+                
+            };
+
             
             gridInfo.Children.Add(borderFon);
             gridInfo.Children.Add(borderImageFon);
