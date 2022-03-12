@@ -114,19 +114,19 @@ namespace Glauncher
         {
             var buttonProg = (FrameworkElement)sender;
 
-            TextBlock nameTextBlock = new TextBlock()
+            TextBlock nameTextBlock = new TextBlock() //ТекстБлок для названия программы
             {
                 Background = Brushes.Transparent,
                 Foreground = Brushes.White,
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(50, 110, 0, 0),
+                Margin = new Thickness(80, 110, 0, 0),
                 FontFamily = new FontFamily("Calibri"),
-                FontSize = 20,
+                FontSize = 25,
             };
 
 
-            if (openIndexInfo == false)
+            if (openIndexInfo == false) //Создает фон окна информации
             {
                 Border borderFon = new Border()
                 {
@@ -170,7 +170,6 @@ namespace Glauncher
                 playButton.Margin = new Thickness(0, 0, 0, 20);
                 playButton.VerticalAlignment = VerticalAlignment.Bottom;
                 playButton.HorizontalAlignment = HorizontalAlignment.Center;
-                playButton.Click += playButton_Click;
 
                 gridFon.Children.Add(borderFon);
                 gridFon.Children.Add(borderImageFon);
@@ -179,14 +178,17 @@ namespace Glauncher
 
                 openIndexInfo = true;
             }
-            else
+            else //Удаляет всю информацию с окна информации
             {
                 gridInfo.Children.Clear();
             }
 
+
+            //Добавление на окно информации
             int i = 0;
             int indexProg = 0;
-            foreach (var button in progButtons)
+
+            foreach (var button in progButtons) //Ищет и сравнивает нажатую кнопку 
             {
                 if (buttonProg == button)
                 {
@@ -195,16 +197,17 @@ namespace Glauncher
                 i++;
             }
             nameTextBlock.Text = programGame[indexProg].Name;
-            
+            playButton.Click += (o, e) => playButton_Click(o, e, indexProg);
+
             gridInfo.Children.Add(nameTextBlock);
 
 
 
         }
 
-        private static void playButton_Click(object sender, RoutedEventArgs e)
+        private static void playButton_Click(object sender, RoutedEventArgs e, int indexProg) //Запускает или закрывает программу
         {
-            Process.Start(programGame[index].FileName);
+            Process.Start(programGame[indexProg].FileName);
         }
 
     }

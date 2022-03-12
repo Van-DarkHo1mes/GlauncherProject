@@ -26,4 +26,17 @@ namespace Glauncher
             ImageIcon = imageIcon;
         }
     }
+
+    public partial class AppProgram : Program
+    {
+        public AppProgram(int index, int indent, string name, string fileName, string typeName, string imageIcon)
+        {
+            Index = index;
+            Indent = indent;
+            Name = name;
+            FileName = fileName;
+            TypeName = typeName;
+            ImageIcon = imageIcon;
+        }
+    }
 }
