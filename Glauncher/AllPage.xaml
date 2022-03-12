@@ -93,8 +93,12 @@
             </Grid>
 
             <Grid  Grid.Column="1">
-                <Grid x:Name="GridInfo" Margin="30, 80, 90, 60">
+                
+                <Grid x:Name="GridFon" Margin="30, 80, 90, 60">
                     
+                </Grid>
+                <Grid x:Name="GridInfo" Margin="30, 80, 90, 60">
+
                 </Grid>
             </Grid>
         </Grid>
