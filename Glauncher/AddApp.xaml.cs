@@ -94,10 +94,21 @@ namespace Glauncher
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) //Собирает кнопку программы на странице "ВСЕ"
+        private void AddButton_Click(object sender, RoutedEventArgs e) //Собирает кнопку программы на странице "ВСЕ"
         {
             nameProg = AddName.Text;
             AllPage.NewProgramButton(nameProg, typeName, iconName, fileName);
+
+            if (typeName == "game")
+            {
+                /* .IndexGame++*/
+            }
+            if (typeName == "appProgram")
+            {
+                /* .IndexApp++*/
+            }
+
+            AllPage.IndexAll++;
             app.Close();
         }
 

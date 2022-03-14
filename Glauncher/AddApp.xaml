@@ -243,7 +243,7 @@
             <Button Width="120" 
                     Margin="140,238,140,31"
                     Style="{StaticResource AddButton}"
-                    Content="Добавить" FontSize="20" Click="Button_Click_1"/>
+                    Content="Добавить" FontSize="20" Click="AddButton_Click"/>
 
 
             <Button 

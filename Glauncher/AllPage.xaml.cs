@@ -27,15 +27,18 @@ namespace Glauncher
             gridFon = GridFon;
         }
 
-        private static List<Game> programGame = new List<Game>();
+        private static List<Program> programAll = new List<Program>();
         private static List<Button> progButtons = new List<Button>();
 
 
+        private static int indexProg = 0;
         private static int indent = 0; //Поле отступа следующей кнопки
-        private static int index = 0; //Поле проядка кнопок программ
+        public static int IndexAll { get; set; } //Поле проядка кнопок программ
         private static bool openIndexInfo = false;
         
         
+
+
 
         private static Grid scrollfieldAll; //Рабочее поле Grid куда добавляются кнопки
         private static Grid gridInfo; //Рабочее поле для информации и запуска приложений
@@ -100,12 +103,16 @@ namespace Glauncher
 
             if (typeName == "game")
             {
-               Game game = new Game(index, indent, nameProg, fileName, typeName, iconName);
-               programGame.Add(game);
+                Game game = new Game(IndexAll, 1,/* .IndexGame,*/indent, nameProg, fileName, typeName, iconName);
+                programAll.Add(game);
+            }
+            if (typeName == "appProgram")
+            {
+                AppProgram appProgram = new AppProgram(IndexAll, 1,/* .IndexApp,*/indent, nameProg, fileName, iconName, iconName);
+                programAll.Add(appProgram);
             }
 
             indent += 80; //Переменная отступа
-            index += 1;
         }
 
 
@@ -174,7 +181,6 @@ namespace Glauncher
                 gridFon.Children.Add(borderFon);
                 gridFon.Children.Add(borderImageFon);
                 gridFon.Children.Add(addFonButton);
-                gridFon.Children.Add(playButton);
 
                 openIndexInfo = true;
             }
@@ -186,28 +192,29 @@ namespace Glauncher
 
             //Добавление на окно информации
             int i = 0;
-            int indexProg = 0;
+            
 
             foreach (var button in progButtons) //Ищет и сравнивает нажатую кнопку 
             {
                 if (buttonProg == button)
                 {
                     indexProg = i;
+                    break;
                 }
                 i++;
             }
-            nameTextBlock.Text = programGame[indexProg].Name;
-            playButton.Click += (o, e) => playButton_Click(o, e, indexProg);
+            nameTextBlock.Text = programAll[indexProg].Name;
+            playButton.Click += (o, e) => playButton_Click(o, e, indexProg, programAll[indexProg].TypeName);
 
             gridInfo.Children.Add(nameTextBlock);
-
+            gridInfo.Children.Add(playButton);
 
 
         }
 
-        private static void playButton_Click(object sender, RoutedEventArgs e, int indexProg) //Запускает или закрывает программу
+        private static void playButton_Click(object sender, RoutedEventArgs e, int indexProg, string typeName) //Запускает или закрывает программу
         {
-            Process.Start(programGame[indexProg].FileName);
+            Process.Start(programAll[indexProg].FileName);
         }
 
     }
