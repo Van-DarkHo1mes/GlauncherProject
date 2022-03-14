@@ -55,6 +55,18 @@ namespace Glauncher
             
         };
 
+        private static Border iconBorderFon = new Border()
+        {
+            Height = 80,
+            Width = 80,
+            Margin = new Thickness(20,60,0,0),
+            CornerRadius = new CornerRadius(40),
+            VerticalAlignment = VerticalAlignment.Top,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            BorderThickness = new Thickness(1),
+            BorderBrush = Brushes.White
+        };
+
 
 
 
@@ -127,9 +139,9 @@ namespace Glauncher
                 Foreground = Brushes.White,
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(80, 110, 0, 0),
+                Margin = new Thickness(110, 105, 0, 0),
                 FontFamily = new FontFamily("Calibri"),
-                FontSize = 25,
+                FontSize = 28, 
             };
 
 
@@ -174,9 +186,10 @@ namespace Glauncher
                     Margin = new Thickness(0, 15, 0, 0)
                 };
 
-                playButton.Margin = new Thickness(0, 0, 0, 20);
+                playButton.Margin = new Thickness(0, 0, 0, 20); //Кнопка запуска
                 playButton.VerticalAlignment = VerticalAlignment.Bottom;
                 playButton.HorizontalAlignment = HorizontalAlignment.Center;
+
 
                 gridFon.Children.Add(borderFon);
                 gridFon.Children.Add(borderImageFon);
@@ -206,6 +219,13 @@ namespace Glauncher
             nameTextBlock.Text = programAll[indexProg].Name;
             playButton.Click += (o, e) => playButton_Click(o, e, indexProg, programAll[indexProg].TypeName);
 
+            ImageBrush ib = new ImageBrush(); //Изображение на окне информации
+            ib.ImageSource = new BitmapImage(
+                new Uri(programAll[indexProg].ImageIcon) //Путь к изображению
+                );
+            iconBorderFon.Background = ib;
+
+            gridInfo.Children.Add(iconBorderFon);
             gridInfo.Children.Add(nameTextBlock);
             gridInfo.Children.Add(playButton);
 
