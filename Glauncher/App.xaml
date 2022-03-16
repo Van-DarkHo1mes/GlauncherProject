@@ -65,11 +65,13 @@
 
         <Style x:Key="playButton" TargetType="Button">
             <Style.Setters>
+                <Setter Property="Background" Value="DarkGreen"/>
                 <Setter Property="FontFamily" Value="Calibry"/>
                 <Setter Property="FontSize" Value="25"/>
                 <Setter Property="Foreground" Value="#B3B3B3"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">

@@ -49,7 +49,7 @@ namespace Glauncher
         private static Button playButton = new Button() //Кнопка запуска выбранной программы
         {
             Height = 40,
-            Width = 120,
+            Width = 150,
             Content = "ЗАПУСК",
             Style = stylePlayButton,
             
@@ -67,7 +67,18 @@ namespace Glauncher
             BorderBrush = Brushes.White
         };
 
+        private static TextBlock nameTextBlock = new TextBlock() //ТекстБлок для названия программы
+        {
+            Background = Brushes.Transparent,
+            Foreground = Brushes.White,
+            VerticalAlignment = VerticalAlignment.Top,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            Margin = new Thickness(110, 105, 0, 0),
+            FontFamily = new FontFamily("Calibri"),
+            FontSize = 28,
+        };
 
+        
 
 
         public static void NewProgramButton(string nameProg, string typeName, string iconName, string fileName) //Собирает Программную кнопку на странице ВСЕ
@@ -82,16 +93,16 @@ namespace Glauncher
                 Height = 50,
                 Width = 50,
                 Margin = new Thickness(30, indent + 10, 0, 0),
-                Background = ib,
                 CornerRadius = new CornerRadius(25),
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 BorderThickness = new Thickness(1),
                 BorderBrush = Brushes.White
             };
+            imageBorder.Background = ib;
 
             TextBlock textBlockName = new TextBlock() //Название кнопки
-            { 
+            {
                 Foreground = Brushes.White,
                 FontSize = 20,
                 FontFamily = new FontFamily("Calibri"),
@@ -101,16 +112,21 @@ namespace Glauncher
             };
             textBlockName.Text = nameProg; //Имя добавляемой программы
 
-            Style style = Application.Current.FindResource("menuButtonStyle") as Style; //Сама кнопка
-            Button programbtn = new Button();
-            programbtn.Style = style;  
-            programbtn.Margin = new Thickness(20, indent, 0, 0);
+            Style styleProgramBTN = Application.Current.FindResource("menuButtonStyle") as Style; //Сама кнопка
+            Button programbtn = new Button()
+            {
+            Style = styleProgramBTN,
+            Margin = new Thickness(20, indent, 0, 0),
+            };
             programbtn.Click += Programbtn_Click;
             progButtons.Add(programbtn);
 
+            programbtn.Content = Brushes.White;
+            programbtn.Content = new Thickness(30);
+            programbtn.Content = nameProg;
             scrollfieldAll.Children.Add(programbtn); // Вывод на рабочее поле
             scrollfieldAll.Children.Add(imageBorder);
-            scrollfieldAll.Children.Add(textBlockName);
+            //scrollfieldAll.Children.Add(textBlockName);
 
 
             if (typeName == "game")
@@ -133,16 +149,7 @@ namespace Glauncher
         {
             var buttonProg = (FrameworkElement)sender;
 
-            TextBlock nameTextBlock = new TextBlock() //ТекстБлок для названия программы
-            {
-                Background = Brushes.Transparent,
-                Foreground = Brushes.White,
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(110, 105, 0, 0),
-                FontFamily = new FontFamily("Calibri"),
-                FontSize = 28, 
-            };
+            
 
 
             if (openIndexInfo == false) //Создает фон окна информации
