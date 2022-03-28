@@ -8,7 +8,6 @@
         WindowStyle="None"
         Icon="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\logo.png"
         Title="Glauncher" Height="639.667" Width="904.703" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" AllowsTransparency="True" >
-
     <Window.Resources >
 
         <Style x:Key="CloseButton" TargetType="Button">
@@ -112,16 +111,16 @@
                 <ColumnDefinition Width="180"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource MenuButtonStyle}" Content="ВСЕ" Grid.Column="2" HorizontalAlignment="Left" Margin="30,33,0,0" VerticalAlignment="Top" Width="76" FontSize="23" FontFamily="Calibri" Height="37" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Cursor="Arrow" Click="AllButton_Click" />
+            <Button Style="{StaticResource MenuButtonStyle}" Content="ВСЕ" Grid.Column="2" HorizontalAlignment="Left" Margin="30,33,0,0" VerticalAlignment="Top" Width="76" FontSize="23" FontFamily="Roboto Medium" Height="37" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Cursor="Arrow" Click="AllButton_Click" />
 
-            <Button Style="{StaticResource MenuButtonStyle}" Content="Приложения" Grid.Column="3" HorizontalAlignment="Left" Margin="8,33,0,0" VerticalAlignment="Top" Width="162" FontSize="23" Height="37" FontFamily="Calibri" Foreground="White"/>
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Приложения" Grid.Column="3" HorizontalAlignment="Left" Margin="8,33,0,0" VerticalAlignment="Top" Width="162" FontSize="23" Height="37" FontFamily="Roboto Medium" Foreground="White"/>
 
-            <Button Style="{StaticResource MenuButtonStyle}" Content="Игры" Grid.Column="4" Margin="82,33,30,0" VerticalAlignment="Top" FontSize="23" Height="37" FontFamily="Calibri" Foreground="White"/>
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Игры" Grid.Column="4" Margin="82,33,30,0" VerticalAlignment="Top" FontSize="23" Height="37" FontFamily="Roboto Medium" Foreground="White"/>
 
             <Button Style="{StaticResource MenuButtonStyle}" Grid.Column="5" Margin="20,23,15,0" VerticalAlignment="Top" FontSize="18" Height="50" FontFamily="Calibri" Foreground="White" BorderBrush="White" Click="AddButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\close.png" Margin="0,0,5,0" Width="24" Height="18" />
-                    <TextBlock HorizontalAlignment="Center" Foreground="White" Width="96" ><Run Text="Добавить"/><LineBreak/><Run/><Run Text=""/><Run Text="п"/><Run Text="риложение"/></TextBlock>
+                    <TextBlock Foreground="White" Width="107" FontFamily="Roboto Medium" ><Run Text="Добавить"/><LineBreak/><Run/><Run Text=""/><Run Text="приложение"/></TextBlock>
                 </StackPanel>
 
             </Button>
@@ -132,7 +131,7 @@
                 </Border.Background>
 
                 <Grid>
-                    
+
 
                     <Grid Grid.Column="0" >
                         <Border HorizontalAlignment="Left" Width="903">
@@ -142,8 +141,8 @@
                         </Border>
                     </Grid>
 
-                    
-                    
+
+
                 </Grid>
 
             </Border>
@@ -154,7 +153,7 @@
 
             <Button Style="{StaticResource CloseButton}"   Grid.Column="5" Margin="131,-14,0,0" VerticalAlignment="Top" Width="24" Height="31" FontSize="25" FontFamily="Consolas" HorizontalAlignment="Left" Content="x" FontWeight="Bold" Click="Button_Click_Exit"/>
 
-            <TextBlock HorizontalAlignment="Left" Margin="10,-7,0,0" TextWrapping="Wrap" Text="Glauncher" VerticalAlignment="Top" Width="106" Height="26" FontSize="17" FontFamily="Calibri" Foreground="White" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,-7,0,0" TextWrapping="Wrap" Text="Glauncher" VerticalAlignment="Top" Width="106" Height="26" FontSize="17" FontFamily="Roboto Medium" Foreground="White" Grid.ColumnSpan="2"/>
 
         </Grid>
     </Border>

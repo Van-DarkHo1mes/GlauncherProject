@@ -16,6 +16,10 @@
 
     <Window.Resources>
 
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Roboto Medium" />
+        </Style>
+
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="White"/>
@@ -70,7 +74,6 @@
 
         <Style x:Key="AddButton" TargetType="Button">
             <Style.Setters>
-                <Setter Property="FontFamily" Value="Calibry"/>
                 <Setter Property="FontSize" Value="23"/>
                 <Setter Property="Foreground" Value="#B3B3B3"/>
                 <Setter Property="BorderThickness" Value="1"/>
@@ -136,7 +139,7 @@
                     </Grid.RowDefinitions>
                     <Grid>
                         <Border Background="wHITE" Width="200" Margin="90,31,30,13" Height="1" CornerRadius="10" />
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Название:" TextWrapping="Wrap" FontFamily="Calibri" FontSize="17" Foreground="White" Width="74" Height="21"/>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Название:" TextWrapping="Wrap" FontSize="17" Foreground="White" Width="85" Height="21"/>
 
                         <TextBox 
                         x:Name="AddName"
@@ -176,7 +179,7 @@
                         <Border VerticalAlignment="Center" Margin="20,0,0,0"  CornerRadius="3" BorderBrush="White" Background="Transparent" BorderThickness="1" Width="54" Height="24" HorizontalAlignment="Left">
                             <DockPanel>
                                 <Menu Height="24" Width="54" Background="{x:Null}" Foreground="White" DockPanel.Dock="Top">
-                                    <MenuItem BorderThickness="0" Header="  Тип" Height="24" Width="54" FontFamily="Calibri" FontSize="17" Foreground="White" >
+                                    <MenuItem BorderThickness="0" Header=" Тип" Height="24" Width="54" FontSize="17" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Roboto Medium">
                                         <MenuItem Header="Приложение"  FontFamily="Calibri" Click="MenuItemApp_Click" Style="{StaticResource MenuItem}"/>
                                         <MenuItem Header="Игра"  FontFamily="Calibri" Click="MenuItemGame_Click" Style="{StaticResource MenuItem}"/>
                                         <MenuItem Header="Другое"  FontFamily="Calibri" Click="MenuItemOther_Click" Style="{StaticResource MenuItem}"/>
@@ -203,7 +206,7 @@
 
                     <Grid Grid.Row="2">
                         <Border Background="wHITE" Width="200" Margin="90,31,30,13" Height="1" CornerRadius="10" />
-                        <Button x:Name="IconButton" Content="Путь" Style="{StaticResource MenuButtonStyle}"  Click="IconButton_Click" FontFamily="Calibri" FontSize="17" Height="24" Width="54" HorizontalAlignment="Left" Margin="20,5,5,5"></Button>
+                        <Button x:Name="IconButton" Content="Путь" Style="{StaticResource MenuButtonStyle}"  Click="IconButton_Click" FontSize="17" Width="54" HorizontalAlignment="Left" Margin="20,8,0,11"/>
                         <TextBlock x:Name="TextBlockIconName" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" FontSize="14" FontFamily="Calibri" Foreground="White" Height="19" HorizontalAlignment="Left" Margin="90,0,0,0"/>
                         <TextBlock IsHitTestVisible="False" Text="выберите путь png/jpg файла" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="110,14,0,0">
                             <TextBlock.Style>
@@ -221,7 +224,7 @@
 
                     <Grid Grid.Row="3">
                         <Border Background="wHITE" Width="200" Margin="90,31,30,13" Height="1" CornerRadius="10" />
-                        <Button x:Name="FileButton" Content="Путь" Style="{StaticResource MenuButtonStyle}"  Click="FileButton_Click" FontFamily="Calibri" FontSize="17" Height="24" Width="54" HorizontalAlignment="Left" Margin="20,5,5,5"></Button>
+                        <Button x:Name="FileButton" Content="Путь" Style="{StaticResource MenuButtonStyle}"  Click="FileButton_Click" FontSize="17" Width="54" HorizontalAlignment="Left" Margin="20,8,0,11"/>
                         <TextBlock x:Name="TextBlockFileName" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" FontSize="14" FontFamily="Calibri" Foreground="White" Height="19" HorizontalAlignment="Left" Margin="90,0,0,0"/>
                         <TextBlock IsHitTestVisible="False" Text="выберите путь exe файла" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="122,14,0,0">
                             <TextBlock.Style>
@@ -260,7 +263,7 @@
 
             <Image Margin="-10,28,-10,271" Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1"/>
 
-            <TextBlock  HorizontalAlignment="Center" Margin="0,34,0,0" Text="Добавление программы" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontFamily="Calibri" FontSize="17"  />
+            <TextBlock  HorizontalAlignment="Center" Margin="0,34,0,0" Text="Добавление программы" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="17"  />
 
 
         </Grid>

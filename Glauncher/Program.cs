@@ -12,13 +12,15 @@ namespace Glauncher
         public string FileName { get; set; }
         public string TypeName { get; set; }
         public string ImageIcon { get; set; }
+        public string ImageFon { get; set; }
+        
     }
 
     public partial class Game : Program
     {
         public int IndexGame { get; set; }
-
-        public Game(int indexAll,int indexGame, int indent, string name, string fileName, string typeName, string imageIcon)
+        
+        public Game(int indexAll,int indexGame, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
         {
             IndexAll = indexAll;
             IndexGame = indexGame;
@@ -27,6 +29,7 @@ namespace Glauncher
             FileName = fileName;
             TypeName = typeName;
             ImageIcon = imageIcon;
+            ImageFon = imageFon;
         }
     }
 
@@ -34,7 +37,7 @@ namespace Glauncher
     {
         public int IndexApp { get; set; }
 
-        public AppProgram(int index, int indexApp, int indent, string name, string fileName, string typeName, string imageIcon)
+        public AppProgram(int index, int indexApp, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
         {
             IndexAll = index;
             IndexApp = indexApp;
@@ -43,6 +46,7 @@ namespace Glauncher
             FileName = fileName;
             TypeName = typeName;
             ImageIcon = imageIcon;
+            ImageFon = imageFon;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Glauncher
             InitializeComponent();
             window = this;
             
-
+            
         }
 
         AllPage allPage = new AllPage(); //Создает объект окна добавления приложений
@@ -56,6 +56,6 @@ namespace Glauncher
             WorkField.Content = allPage;
         }
 
-
+        
     }
 }
