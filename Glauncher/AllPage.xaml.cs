@@ -42,18 +42,15 @@ namespace Glauncher
         private static int indent = 0; //Поле отступа следующей кнопки
         public static int IndexAll { get; set; } //Поле проядка кнопок программ
         private static bool openIndexInfo = false; //Флаг открытия окна информации
-        
-        
+        private static string defoltFon = System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().LastIndexOf("Glauncher") + 10) + "BIF.jpg";
+
+
 
 
 
         private static Grid scrollfieldAll; //Рабочее поле Grid куда добавляются кнопки
         private static Grid gridInfo; //Рабочее поле для информации и запуска приложений
         private static Grid gridFon; //Рабочее поле фона для информации и запуска приложений
-
-
-        
-
         
 
 
@@ -110,14 +107,14 @@ namespace Glauncher
             BorderThickness = new Thickness(1),
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Center,
-            CornerRadius = new CornerRadius(12, 12, 0, 0)
+            CornerRadius = new CornerRadius(12, 12, 0, 0),
+            
         };
 
         private static Style styleAddFonButton = Application.Current.FindResource("addFonButton") as Style; //Кнопка выбора фона
         private static Button addFonButton = new Button()
         {
             Height = 30,
-
             Style = styleAddFonButton,
             BorderThickness = new Thickness(0),
             Content = "Вы можете добавить свой фон",
@@ -157,6 +154,7 @@ namespace Glauncher
                 BorderThickness = new Thickness(1),
                 BorderBrush = Brushes.White
             };
+            ib.Stretch = Stretch.UniformToFill;
             imageBorder.Background = ib;
 
             TextBlock textBlockName = new TextBlock() //Название кнопки
@@ -188,12 +186,12 @@ namespace Glauncher
 
             if (typeName == "game")
             {
-                Game game = new Game(IndexAll, 1,/* .IndexGame,*/indent, nameProg, fileName, typeName, iconName, @"C:\Users\super\Pictures\Saved Pictures\BIF.jpg");
+                Game game = new Game(IndexAll, 1,/* .IndexGame,*/indent, nameProg, fileName, typeName, iconName, defoltFon);
                 programAll.Add(game);
             }
             if (typeName == "appProgram")
             {
-                AppProgram appProgram = new AppProgram(IndexAll, 1,/* .IndexApp,*/indent, nameProg, fileName, iconName, iconName, @"C:\Users\super\Pictures\Saved Pictures\BIF.jpg");
+                AppProgram appProgram = new AppProgram(IndexAll, 1,/* .IndexApp,*/indent, nameProg, fileName, iconName, iconName, defoltFon);
                 programAll.Add(appProgram);
             }
 
@@ -221,8 +219,11 @@ namespace Glauncher
 
                 ImageBrush ibr = new ImageBrush(); //Дефолтный фон окна информации программы
                 ibr.ImageSource = new BitmapImage(
-                    new Uri(@"C:\Users\super\Pictures\Saved Pictures\BIF.jpg")
+                    new Uri(defoltFon)
                 );
+
+
+                
                 borderImageFon.Background = ibr;
 
                 gridFon.Children.Add(borderFon);
@@ -254,16 +255,21 @@ namespace Glauncher
 
             ImageBrush ib = new ImageBrush(); //Изображение на окне информации
             ib.ImageSource = new BitmapImage(
-                new Uri(programAll[indexProg].ImageIcon) 
+                new Uri(programAll[indexProg].ImageIcon)
                 );
+            ib.Stretch = Stretch.UniformToFill;
             iconBorderFon.Background = ib;
 
             settingsButton.Click += (o, e) => SettingsButton_Click(o, e, indexProg);
 
             ImageBrush ibf = new ImageBrush();
+            ibf.Stretch = Stretch.Fill;
             ibf.ImageSource = new BitmapImage(
                 new Uri(programAll[indexProg].ImageFon)
                 );
+
+
+
             borderImageFon.Background = ibf;
 
             addFonButton.Click += AddFonButton_Click;
@@ -286,16 +292,20 @@ namespace Glauncher
             
         }
 
+
+
         private static void playButton_Click(object sender, RoutedEventArgs e, int indexProg) //Запускает или закрывает программу
         {
             Process.Start(programAll[indexProg].FileName);
         }
+
 
         public static void OpenFile() //Просмотр файлов в окне настроек
         {
             Process.Start("explorer.exe", programAll[indexProg].FileName.Substring(0, programAll[indexProg].FileName.LastIndexOf(@"\") + 1));
            
         }
+
 
         public static void RenameInfoProg(string newName, string newIcon) //Измение имени и/или иконки
         {
@@ -313,7 +323,6 @@ namespace Glauncher
                 var newTB = (TextBlock) gridButtons[indexProg].Children[2];
                 newTB.Text = newName;
                 
-                
             }
 
             if (newIcon != null)
@@ -324,6 +333,7 @@ namespace Glauncher
                 ib.ImageSource = new BitmapImage(
                     new Uri(newIcon) 
                     );
+                ib.Stretch = Stretch.UniformToFill;
                 iconBorderFon.Background = ib;
 
                 gridInfo.Children.Add(iconBorderFon);
@@ -338,7 +348,7 @@ namespace Glauncher
             
         }
 
-        private static void AddFonButton_Click(object sender, RoutedEventArgs e)
+        private static void AddFonButton_Click(object sender, RoutedEventArgs e) //Изменение фона на окне информации
         {
             OpenFileDialog fileDialog = new OpenFileDialog()
             {
@@ -351,6 +361,7 @@ namespace Glauncher
                 var newIBF = (Border) gridInfo.Children[3];
 
                 ImageBrush ib = new ImageBrush();
+                ib.Stretch = Stretch.UniformToFill;
                 ib.ImageSource = new BitmapImage(
                     new Uri(fileDialog.FileName)
                     );
@@ -358,6 +369,8 @@ namespace Glauncher
 
                 programAll[indexProg].ImageFon = fileDialog.FileName;
             }
-        }
+        }  
+
+
     }
 }

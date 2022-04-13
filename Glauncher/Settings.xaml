@@ -100,7 +100,7 @@
                 BorderBrush="Black" 
                 BorderThickness="1">
             <Border.Background>
-                <ImageBrush ImageSource="A:\Kursa4\GlauncherProject\Glauncher/SetFon3.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="\SetFon3.png" Stretch="UniformToFill"/>
             </Border.Background>
             <Grid>
 

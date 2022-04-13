@@ -124,7 +124,7 @@
         <Grid>
             <Border CornerRadius="12" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center"   VerticalAlignment="Top" Width="400" Height="266" Margin="0,34,0,0">
                 <Border.Background>
-                    <ImageBrush ImageSource="A:\Kursa4\GlauncherProject\Glauncher\AddFon6.jpg" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="\AddFon6.jpg" Stretch="UniformToFill"/>
                 </Border.Background>
 
             </Border>
@@ -261,7 +261,7 @@
                 Margin="351,-4,25,0" 
                 Click="CloseAddButton_Click"/>
 
-            <Image Margin="-10,28,-10,271" Stretch="Fill" Source="A:\Kursa4\GlauncherProject\Glauncher\line.png" Height="1"/>
+            <Image Margin="-10,28,-10,271" Stretch="Fill" Source="\line.png" Height="1"/>
 
             <TextBlock  HorizontalAlignment="Center" Margin="0,34,0,0" Text="Добавление программы" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="17"  />
 
