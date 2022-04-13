@@ -101,11 +101,11 @@ namespace Glauncher
 
             if (typeName == "game")
             {
-                /* .IndexGame++*/
+               /*IndexGame++;*/
             }
             if (typeName == "appProgram")
             {
-                /* .IndexApp++*/
+                AppPage.IndexApp++;
             }
 
             AllPage.IndexAll++;

@@ -191,7 +191,7 @@ namespace Glauncher
             }
             if (typeName == "appProgram")
             {
-                AppProgram appProgram = new AppProgram(IndexAll, 1,/* .IndexApp,*/indent, nameProg, fileName, iconName, iconName, defoltFon);
+                AppProgram appProgram = new AppProgram(IndexAll, AppPage.IndexApp, indent, nameProg, fileName, iconName, iconName, defoltFon);
                 programAll.Add(appProgram);
             }
 

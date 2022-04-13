@@ -30,7 +30,8 @@ namespace Glauncher
             
         }
 
-        AllPage allPage = new AllPage(); //Создает объект окна добавления приложений
+        AllPage allPage = new AllPage(); 
+        AppPage appPage = new AppPage();
 
         private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна на экране
         {
@@ -56,6 +57,9 @@ namespace Glauncher
             WorkField.Content = allPage;
         }
 
-        
-    }
+        private void AppButton_Click(object sender, RoutedEventArgs e)
+        {
+            WorkField.Content = appPage;
+        }
+  }
 }

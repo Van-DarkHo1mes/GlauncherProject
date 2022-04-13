@@ -113,7 +113,7 @@
 
             <Button Style="{StaticResource MenuButtonStyle}" Content="ВСЕ" Grid.Column="2" HorizontalAlignment="Left" Margin="30,33,0,0" VerticalAlignment="Top" Width="76" FontSize="23" FontFamily="Roboto Medium" Height="37" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Cursor="Arrow" Click="AllButton_Click" />
 
-            <Button Style="{StaticResource MenuButtonStyle}" Content="Приложения" Grid.Column="3" HorizontalAlignment="Left" Margin="8,33,0,0" VerticalAlignment="Top" Width="162" FontSize="23" Height="37" FontFamily="Roboto Medium" Foreground="White"/>
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Приложения" Grid.Column="3" HorizontalAlignment="Left" Margin="8,33,0,0" VerticalAlignment="Top" Width="162" FontSize="23" Height="37" FontFamily="Roboto Medium" Foreground="White" Click="AppButton_Click"/>
 
             <Button Style="{StaticResource MenuButtonStyle}" Content="Игры" Grid.Column="4" Margin="82,33,30,0" VerticalAlignment="Top" FontSize="23" Height="37" FontFamily="Roboto Medium" Foreground="White"/>
 
@@ -135,9 +135,7 @@
 
                     <Grid Grid.Column="0" >
                         <Border HorizontalAlignment="Left" Width="903">
-                            <Frame x:Name="WorkField" HorizontalAlignment="Left" Width="903">
-
-                            </Frame>
+                            <Frame x:Name="WorkField" HorizontalAlignment="Left" Width="903" NavigationUIVisibility="Hidden"/>
                         </Border>
                     </Grid>
 
