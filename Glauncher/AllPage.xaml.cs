@@ -37,17 +37,17 @@ namespace Glauncher
 
     private static List<Button> progButtons = new List<Button>(); //Лист всех кнопок
     private static List<Panel> gridButtons = new List<Panel>(); //Лист всех контейнеров кнопок
+    private static List<String> processStartName = new List<String>();
+    private static List<Process> processStart = new List<Process>();
 
     private static FrameworkElement buttonProg;
+
 
     private static int indexProg = 0; //Индек активной программы
     private static int indent = 0; //Поле отступа следующей кнопки
     public static int IndexAll { get; set; } //Поле проядка кнопок программ
     private static bool openIndexInfo = false; //Флаг открытия окна информации
     private static string defoltFon = System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().LastIndexOf("Glauncher") + 10) + "BIF.jpg";
-
-
-
 
 
     private static Grid scrollfieldAll; //Рабочее поле Grid куда добавляются кнопки
@@ -273,9 +273,6 @@ namespace Glauncher
     {
       buttonProg = (FrameworkElement)sender;
 
-
-
-
       if (openIndexInfo == false) //Создает фон окна информации
       {
         Border borderFon = new Border()
@@ -320,6 +317,18 @@ namespace Glauncher
         i++;
       }
       nameTextBlock.Text = Program.programsList[indexProg].Name;
+
+      foreach (var process in processStartName)
+      {
+        if(process == Program.programsList[indexProg].FileName)
+        {
+          playButton.Content = "ЗАКРЫТЬ";
+        }
+        else
+        {
+          playButton.Content = "ЗАПУСК";
+        }
+      }
       playButton.Click += (o, e) => playButton_Click(o, e, indexProg);
 
       ImageBrush ib = new ImageBrush(); //Изображение на окне информации
@@ -337,13 +346,9 @@ namespace Glauncher
           new Uri(Program.programsList[indexProg].ImageFon)
           );
 
-
-
       borderImageFon.Background = ibf;
 
       addFonButton.Click += AddFonButton_Click;
-
-
 
       gridInfo.Children.Add(nameTextBlock);
       gridInfo.Children.Add(playButton);
@@ -365,14 +370,49 @@ namespace Glauncher
 
     private static void playButton_Click(object sender, RoutedEventArgs e, int indexProg) //Запускает или закрывает программу
     {
-      Process.Start(Program.programsList[indexProg].FileName);
+      bool stex = true; 
+      int deli = -1;
+
+      foreach (var process in processStartName)
+      {
+        if (process == Program.programsList[indexProg].FileName)
+        {
+          int i = 0;
+          foreach (var proc in processStart)
+          {
+            i++;
+            if (proc.ProcessName == Program.programsList[indexProg].IdProcess)
+            {
+              stex = false;
+              proc.Kill();
+              deli = i - 1;
+              playButton.Content = "ЗАПУСК";
+            }
+          }
+        }
+      }
+
+      if (stex == true)
+      {
+        var proc = Process.Start(Program.programsList[indexProg].FileName);
+        processStartName.Add(Program.programsList[indexProg].FileName);
+        processStart.Add(proc);
+        Program.programsList[indexProg].IdProcess = proc.ProcessName;
+        playButton.Content = "ЗАКРЫТЬ";
+      }
+
+      if (deli != -1)
+      {
+        processStart.RemoveAt(deli);
+        processStartName.RemoveAt(deli);
+      }
+
     }
 
 
     public static void OpenFile() //Просмотр файлов в окне настроек
     {
       Process.Start("explorer.exe", Program.programsList[indexProg].FileName.Substring(0, Program.programsList[indexProg].FileName.LastIndexOf(@"\") + 1));
-
     }
 
 

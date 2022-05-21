@@ -23,6 +23,7 @@ namespace Glauncher
       ImageFon = imageFon;
     }
 
+    
     public int Indent { get; set; }
     public int IndexAll { get; set; }
     public string Name { get; set; }
@@ -30,6 +31,7 @@ namespace Glauncher
     public string TypeName { get; set; }
     public string ImageIcon { get; set; }
     public string ImageFon { get; set; }
+    public string IdProcess { get; set; }
 
     public static List<Program> programsList = new List<Program>();
   }
