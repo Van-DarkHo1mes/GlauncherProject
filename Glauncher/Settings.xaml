@@ -179,7 +179,7 @@
                 </Grid>
 
                 <Grid Grid.Row="4">
-                    <Button Style="{StaticResource FileWay}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="120" Margin="15" Content="Добавить" Foreground="White" FontSize="18" Click="NewAddButton_Click"/>
+                    <Button Style="{StaticResource FileWay}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="120" Margin="15" Content="Изменить" Foreground="White" FontSize="18" Click="RenameButton_Click"/>
 
                 </Grid>
             </Grid>

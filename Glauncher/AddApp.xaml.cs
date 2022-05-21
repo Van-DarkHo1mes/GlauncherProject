@@ -22,8 +22,19 @@ namespace Glauncher
         private string typeName;
 
 
+    delegate void CloseAddButton(object sender, RoutedEventArgs e);
+    private CloseAddButton CloseAddButton_Click = (object sender, RoutedEventArgs e) => app.Close();
 
-        public static AddApp app; //ОбЬект текущего окна
+    delegate void movingWindow(object sender, RoutedEventArgs e);
+    private movingWindow MovingWindow = (object sender, RoutedEventArgs e) => {
+      if (Mouse.LeftButton == MouseButtonState.Pressed)
+      {
+        AddApp.app.DragMove();
+      }
+    };
+    
+
+    public static AddApp app; //ОбЬект текущего окна
 
         public AddApp()
         {
@@ -32,18 +43,18 @@ namespace Glauncher
 
         }
 
-        private void CloseAddButton_Click(object sender, RoutedEventArgs e)  //Метод закрытия окна добавления
+       /* private void CloseAddButton_Click(object sender, RoutedEventArgs e)  //Метод закрытия окна добавления
         {
             app.Close();
-        }
+        }*/
 
-        private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна добавления на экране
+        /*private void MovingWindow(object sender, RoutedEventArgs e)   //Метод для перемещения окна добавления на экране
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 AddApp.app.DragMove();
             }
-        }
+        }*/
 
         private void MenuItemApp_Click(object sender, RoutedEventArgs e) //Тип программы ПРИЛОЖЕНИЕ
         {

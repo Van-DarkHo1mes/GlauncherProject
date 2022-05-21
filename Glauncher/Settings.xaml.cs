@@ -54,7 +54,7 @@ namespace Glauncher
             AllPage.OpenFile();
         }
 
-        private void NewAddButton_Click(object sender, RoutedEventArgs e) //Вызывает метод ренейма кнопки
+        private void RenameButton_Click(object sender, RoutedEventArgs e) //Вызывает метод ренейма кнопки
         {
 
             AllPage.RenameInfoProg(NewName.Text, newIconName);
