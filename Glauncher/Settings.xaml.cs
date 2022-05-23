@@ -24,8 +24,13 @@ namespace Glauncher
     {
       InitializeComponent();
       settings = this;
+
+      autorunBtn = autoRunBtn;
+
+      IndBrushes();
     }
 
+    public static Button autorunBtn;
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) //Закрытые окна
     {
@@ -62,5 +67,21 @@ namespace Glauncher
       settings.Close();
     }
 
+    private void AutoRunButton_Click(object sender, RoutedEventArgs e)
+    {
+      Program.AutoRun(Program.programsList[AllPage.indexProg]);
+    }
+
+    private static void IndBrushes()
+    {
+      if (Program.programsList[AllPage.indexProg].AutoRunOn == true)
+      {
+        autorunBtn.Background = Brushes.DarkGreen;
+      }
+      else
+      {
+        autorunBtn.Background = Brushes.Transparent;
+      }
+    }
   }
 }

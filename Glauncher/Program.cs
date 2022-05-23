@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Windows.Media;
 
 namespace Glauncher
 {
@@ -33,8 +35,10 @@ namespace Glauncher
     public string TypeName { get; set; }
     public string ImageIcon { get; set; }
     public string ImageFon { get; set; }
+    public bool AutoRunOn { get; set; }
 
     public static List<Program> programsList = new List<Program>();
+
 
     public static void DataValidation(string nameProg, string typeName, string iconName, string fileName)
     {
@@ -48,9 +52,9 @@ namespace Glauncher
       {
         typeName = "program";
       }
-      if ((nameProg == "") & (nameProg == null) & (fileName != null))
+      if (((nameProg == "") | (nameProg == null)) & (fileName != null))
       {
-        nameProg = fileName.Substring(fileName.LastIndexOf(@"\") + 1, fileName.LastIndexOf("."));
+        nameProg = fileName.Substring(fileName.LastIndexOf(@"\") + 1, fileName.Length - fileName.LastIndexOf(@"\") - 5);
       }
       if (fileName == null)
       {
@@ -62,53 +66,25 @@ namespace Glauncher
       {
         AllPage.NewProgramButton(nameProg, typeName, iconName, fileName);
       }
-      
-    }
-  }
 
-  [Serializable]
-  public partial class Game : Program
-  {
-    public Game()
-    {
     }
 
-    public int IndexGame { get; set; }
-
-    public static List<Game> gamesList = new List<Game>();
-
-    public Game(int indexAll, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
+    public static void AutoRun(Program program)
     {
-      IndexAll = indexAll;
-      Indent = indent;
-      Name = name;
-      FileName = fileName;
-      TypeName = typeName;
-      ImageIcon = imageIcon;
-      ImageFon = imageFon;
-    }
-  }
+      string autoRunGrid = @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp";
 
-  [Serializable]
-  public partial class AppProgram : Program
-  {
-    public AppProgram()
-    {
-    }
-
-    public int IndexApp { get; set; }
-
-    public static List<AppProgram> appsList = new List<AppProgram>();
-
-    public AppProgram(int index, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
-    {
-      IndexAll = index;
-      Indent = indent;
-      Name = name;
-      FileName = fileName;
-      TypeName = typeName;
-      ImageIcon = imageIcon;
-      ImageFon = imageFon;
+      if (program.AutoRunOn == false)
+      {
+        File.Copy(program.FileName, autoRunGrid + '/' + Path.GetFileName(program.FileName));
+        program.AutoRunOn = true;
+        Settings.autorunBtn.Background = Brushes.DarkGreen;
+      }
+      else
+      {
+        File.Delete(autoRunGrid + '/' + Path.GetFileName(program.FileName));
+        program.AutoRunOn = false;
+        Settings.autorunBtn.Background = Brushes.Transparent;
+      }
     }
   }
 }

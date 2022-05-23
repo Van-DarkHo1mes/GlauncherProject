@@ -8,7 +8,29 @@
         WindowStyle="None"
         Icon="\logo.png"
         Title="Glauncher" Height="639.667" Width="904.703" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" AllowsTransparency="True" >
+    
     <Window.Resources >
+
+        <Style x:Key="addFonButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
         <Style x:Key="CloseButton" TargetType="Button">
             <Style.Setters>
@@ -81,12 +103,8 @@
                                     BorderThickness="1"
                                     BorderBrush="White"
                                     Margin="10,10,238,10">
-                                    <Border.Background>
-                                        <ImageBrush x:Name="iconProg" ImageSource="C:\Users\super\source\repos\solution_Glauncher\Glauncher\Glauncher\fon.jpg"/>
-                                    </Border.Background>
                                 </Border>
                             </Border>
-                            <TextBox x:Name="text" ></TextBox>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -143,7 +161,12 @@
 
             </Border>
 
-            <Image Margin="26,18,162,13" Source="\logo.png" Stretch="Fill" Width="47" Height="53" RenderTransformOrigin="0.455,0.46" Grid.ColumnSpan="2"/>
+            <Button Style="{DynamicResource addFonButton}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.ColumnSpan="2" Margin="26,17,154,10" Click="UserButton_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/logo.png"/>
+                </Button.Background>
+            </Button>
+
 
             <Image Margin="47,3,135,1" Source="\stripe.png" Stretch="Fill" Grid.Column="1"/>
 

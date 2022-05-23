@@ -17,8 +17,6 @@ using System.Xml.Serialization;
 
 namespace Glauncher
 {
-
-
   public partial class MainWindow : Window
   {
 
@@ -27,6 +25,7 @@ namespace Glauncher
     public MainWindow()
     {
       InitializeComponent();
+
       DeserializeXML();
       RecoveryButton();
 
@@ -37,7 +36,7 @@ namespace Glauncher
     AllPage allPage = new AllPage();
 
 
-    private void SerializeXML(List<Program> programList, List<Game> gamesList, List<AppProgram> appsList)
+    public static void SerializeXML(List<Program> programList, User user)
     {
       
       XmlSerializer xml1 = new XmlSerializer(typeof(List<Program>));
@@ -46,18 +45,11 @@ namespace Glauncher
         xml1.Serialize(fs, programList);
       }
 
-      XmlSerializer xml2 = new XmlSerializer(typeof(List<Game>));
-      using (FileStream fs = new FileStream("Game.xml", FileMode.OpenOrCreate))
+      XmlSerializer xml2 = new XmlSerializer(typeof(User));
+      using (FileStream fs = new FileStream("User.xml", FileMode.OpenOrCreate))
       {
-        xml2.Serialize(fs, gamesList);
+        xml2.Serialize(fs, user);
       }
-
-      XmlSerializer xml3 = new XmlSerializer(typeof(List<AppProgram>));
-      using (FileStream fs = new FileStream("App.xml", FileMode.OpenOrCreate))
-      {
-        xml3.Serialize(fs, appsList);
-      }
-
     }
 
     private void DeserializeXML()
@@ -72,28 +64,17 @@ namespace Glauncher
         }
       }
       catch (Exception){}
-      
 
       try
       {
-        XmlSerializer xml2 = new XmlSerializer(typeof(List<Game>));
-        using (FileStream fs = new FileStream("Game.xml", FileMode.OpenOrCreate))
+        XmlSerializer xml2 = new XmlSerializer(typeof(User));
+        using (FileStream fs = new FileStream("User.xml", FileMode.OpenOrCreate))
         {
-          Game.gamesList = (List<Game>)xml2.Deserialize(fs);
+
+          UserWindow.user = (User)xml2.Deserialize(fs);
         }
       }
-      catch (Exception){}
-      
-      try
-      {
-        XmlSerializer xml3 = new XmlSerializer(typeof(List<AppProgram>));
-        using (FileStream fs = new FileStream("App.xml", FileMode.OpenOrCreate))
-        {
-          AppProgram.appsList = (List<AppProgram>)xml3.Deserialize(fs);
-        }
-      }
-      catch (Exception){}
-     
+      catch (Exception) { }
     }
 
     private void RecoveryButton()
@@ -117,8 +98,7 @@ namespace Glauncher
 
     private void Button_Click_Exit(object sender, RoutedEventArgs e) //Метод завершения работы программы
     {
-      SerializeXML(Program.programsList, Game.gamesList, AppProgram.appsList);
-
+      SerializeXML(Program.programsList, UserWindow.user);
 
       Application.Current.Shutdown();
     }
@@ -134,6 +114,10 @@ namespace Glauncher
       WorkField.Content = allPage;
     }
 
-    
+    private void UserButton_Click(object sender, RoutedEventArgs e)
+    {
+      UserWindow userWindow = new UserWindow();
+      userWindow.ShowDialog();
+    }
   }
 }

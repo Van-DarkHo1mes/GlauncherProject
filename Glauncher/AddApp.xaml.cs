@@ -16,8 +16,8 @@ namespace Glauncher
 
   public partial class AddApp : Window
   {
-    private string nameProg; //Имя файла
-    private string fileName; //Имя(Путь) файла
+    private string nameProg; 
+    private string fileName; 
     private string iconName;
     private string typeName;
 
@@ -91,7 +91,6 @@ namespace Glauncher
 
         TextBlockFileName.Text = "...  " + fileName.Substring(fileName.LastIndexOf(@"\"));
       }
-
 
     }
 

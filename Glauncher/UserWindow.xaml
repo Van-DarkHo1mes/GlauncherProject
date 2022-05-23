@@ -1,0 +1,163 @@
+﻿<Window x:Class="Glauncher.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Glauncher"
+        mc:Ignorable="d"
+        Title="UserWindow" Height="300" Width="500" Background="{x:Null}" Foreground="{x:Null}" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <Window.Resources>
+
+        <Style x:Key="addFonButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="FileWay" TargetType="Button">
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        BorderThickness="1"
+                        Padding="4,2" 
+                        CornerRadius="3" 
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CloseButton" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Name="border" 
+                        BorderThickness="1"
+                        Padding="4,2" 
+                        CornerRadius="3">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#fb000c"></Setter>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Border Background="Black" BorderBrush="White" BorderThickness="1" CornerRadius="12">
+        <Grid>
+
+            <Border Width="100" Height="100" Margin="360,179,38,19">
+                <Border.Background>
+                    <ImageBrush ImageSource="/logo.png"/>
+                </Border.Background>
+            </Border>
+
+            <Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Width="480" Height="1" Background="White" CornerRadius="10"/>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Margin="140,79,0,0" Text="Приветствую вас," Foreground="White" FontSize="18"/>
+
+
+            <TextBox 
+                        x:Name="NameBox"
+                        x:FieldModifier="private"
+                        HorizontalAlignment="Left" 
+                        Margin="290,81,0,198"
+                        TextWrapping="Wrap" 
+                        Width="140" 
+                        FontFamily="Calibri" 
+                        FontSize="18" 
+                        CaretBrush="White" 
+                        BorderBrush="{x:Null}" 
+                        Height="19" 
+                        SelectionTextBrush="{x:Null}" 
+                        SelectionBrush="{x:Null}" 
+                        Background="{x:Null}" 
+                        Foreground="White"
+                        BorderThickness="0"/>
+
+            <TextBlock IsHitTestVisible="False" Text="введите никнейм" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Margin="312,83,0,0">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=AddName}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <Border HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="1" Margin="290,102,0,0" Background="White" CornerRadius="10"/>
+
+            <Button Style="{StaticResource CloseButton}" Width="24" Height="30" FontSize="25" FontFamily="Consolas" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" FontWeight="Bold" Click="ButtonClick_Exit" Margin="0,-5,24,0"/>
+
+            <Button Style="{DynamicResource addFonButton}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Height="105" Margin="30,50,20,20" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="NewIconButton_Click">
+                <Border x:Name="IconImage" CornerRadius="45" Background="Aqua" Height="100" Width="100" BorderThickness="1" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top"></Border>
+            </Button>
+
+            <Grid Margin="0,160,0,0" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Button Style="{StaticResource FileWay}" Content="Очистить КЭШ" Background="{x:Null}" HorizontalAlignment="Left" Margin="35,10,0,10" Foreground="White" FontFamily="Roboto Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="18" Click="DeleteSaveButton_Click"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Button Name="GlRun" Style="{DynamicResource AutoRunButton}" HorizontalAlignment="Left" Margin="35, 0, 0, 0" Click="GlRunButton_Click"/>
+                    <TextBlock Text="Автозапуск программы" Foreground="White" FontSize="18" FontFamily="Roboto Medium" Margin="70, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Button Style="{StaticResource FileWay}" Content="Сохранить данные" Background="{x:Null}" HorizontalAlignment="Left" Margin="35,10,0,10" Foreground="White" FontFamily="Roboto Medium" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="18" Click="SaveButton_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

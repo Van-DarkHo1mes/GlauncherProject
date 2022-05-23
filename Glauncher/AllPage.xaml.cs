@@ -44,7 +44,7 @@ namespace Glauncher
     private static FrameworkElement buttonProg;
 
 
-    private static int indexProg = 0; //Индек активной программы
+    public static int indexProg = 0; //Индек активной программы
     private static int indent = 0; //Поле отступа следующей кнопки
     public static int IndexAll = Program.programsList.Count; //Поле проядка кнопок программ
     private static bool openIndexInfo = false; //Флаг открытия окна информации
@@ -54,7 +54,6 @@ namespace Glauncher
     private static Grid scrollfieldAll; //Рабочее поле Grid куда добавляются кнопки
     private static Grid gridInfo; //Рабочее поле для информации и запуска приложений
     private static Grid gridFon; //Рабочее поле фона для информации и запуска приложений
-
 
 
     private static Style stylePlayButton = Application.Current.FindResource("playButton") as Style;
@@ -90,6 +89,17 @@ namespace Glauncher
       Margin = new Thickness(110, 105, 0, 0),
       FontFamily = new FontFamily("Roboto Medium"),
       FontSize = 28,
+    };
+
+    private static TextBlock timeBlock = new TextBlock()
+    {
+      Background = Brushes.Transparent,
+      Foreground = Brushes.Gray,
+      VerticalAlignment = VerticalAlignment.Top,
+      HorizontalAlignment = HorizontalAlignment.Left,
+      Margin = new Thickness(270, 140, 0, 0),
+      FontFamily = new FontFamily("Roboto Medium"),
+      FontSize = 22,
     };
 
     private static Style styleSettingsButton = Application.Current.FindResource("SettingsButton") as Style; //Кнопка настроек
@@ -262,20 +272,6 @@ namespace Glauncher
       Program program = new Program(IndexAll, indent, nameProg, fileName, typeName, iconName, defoltFon);
       Program.programsList.Add(program);
 
-      if (typeName == "game")
-      {
-        Game game = new Game(IndexAll, indent, nameProg, fileName, iconName, iconName, defoltFon);
-
-        Game.gamesList.Add(game);
-      }
-
-      if (typeName == "appProgram")
-      {
-        AppProgram appProgram = new AppProgram(IndexAll, indent, nameProg, fileName, iconName, iconName, defoltFon);
-
-        AppProgram.appsList.Add(appProgram);
-      }
-
       indent += 80; //Переменная отступа
     }
 
@@ -302,8 +298,6 @@ namespace Glauncher
             new Uri(defoltFon)
         );
 
-
-
         borderImageFon.Background = ibr;
 
         gridFon.Children.Add(borderFon);
@@ -316,10 +310,8 @@ namespace Glauncher
         gridInfo.Children.Clear();
       }
 
-
-      //Добавление на окно информации
+      
       int i = 0;
-
 
       foreach (var button in progButtons) //Ищет и сравнивает нажатую кнопку 
       {
@@ -331,8 +323,7 @@ namespace Glauncher
         i++;
       }
       nameTextBlock.Text = Program.programsList[indexProg].Name;
-
-      
+      timeBlock.Text = "" + Program.programsList[indexProg].ExTime + " секунд";
       
 
       foreach (var process in processStartName)
@@ -376,6 +367,7 @@ namespace Glauncher
       gridInfo.Children.Add(addFonButton);
       gridInfo.Children.Add(iconBorderFon);
       gridInfo.Children.Add(settingsButton);
+      gridInfo.Children.Add(timeBlock);
 
     }
 
@@ -410,9 +402,10 @@ namespace Glauncher
               stopwatches[t].Stop();
               TimeSpan ts = stopwatches[t].Elapsed;
               
-              Program.programsList[indexProg].ExTime = ts.Hours * 3600 + ts.Minutes * 60 + ts.Seconds;
+              Program.programsList[indexProg].ExTime = Program.programsList[indexProg].ExTime + ts.Hours * 3600 + ts.Minutes * 60 + ts.Seconds;
               deli = i - 1;
               playButton.Content = "ЗАПУСК";
+              stopwatches.Remove(stopwatches[t]);
             }
           }
         }
@@ -515,9 +508,12 @@ namespace Glauncher
 
         Program.programsList[indexProg].ImageFon = fileDialog.FileName;
       }
+
+      Program.AutoRun(Program.programsList[indexProg]);
+
     }
 
-    private static void DeleteButton_Click(object sender, RoutedEventArgs e, int indexProg)
+    public static void DeleteButton_Click(object sender, RoutedEventArgs e, int indexProg)
     {
       try
       {
@@ -547,7 +543,7 @@ namespace Glauncher
         var program = Program.programsList[i];
         RecoveryProgramButton(program.Name, program.FileName, program.ImageIcon, program.FileName);
       }
-    } 
+    }
 
   }
 }
