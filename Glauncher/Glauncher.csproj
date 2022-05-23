@@ -12,13 +12,21 @@
     <None Remove="AddFon7.jpg" />
     <None Remove="BIF.jpg" />
     <None Remove="close.png" />
+    <None Remove="DeleteButton.png" />
     <None Remove="fon.jpg" />
     <None Remove="line.png" />
     <None Remove="logo.png" />
+    <None Remove="questionmark.jpg" />
     <None Remove="SetFon3.png" />
     <None Remove="Setting2.png" />
     <None Remove="Settings1.png" />
     <None Remove="stripe.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="DeleteButton.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +50,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="questionmark.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="SetFon3.png">

@@ -8,20 +8,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Glauncher
 {
-
-  public partial class AppPage : Page
+ 
+  public partial class ErorData : Window
   {
-    public AppPage()
+    public ErorData()
     {
       InitializeComponent();
+      erorData = this;
     }
 
-    public static int IndexApp { get; set; }
+    public static ErorData erorData;
 
+    private void OkButton_Click(object sender, RoutedEventArgs e)
+    {
+      AddApp.app.Close();
+      erorData.Close();
+      
+    }
   }
 }

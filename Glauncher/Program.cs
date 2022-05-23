@@ -7,9 +7,9 @@ namespace Glauncher
   [Serializable]
   public partial class Program
   {
-    
+
     public Program()
-    { 
+    {
     }
 
     public Program(int indexAll, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
@@ -23,17 +23,47 @@ namespace Glauncher
       ImageFon = imageFon;
     }
 
-    
+
     public int Indent { get; set; }
     public int IndexAll { get; set; }
+    public int IdProcess { get; set; }
+    public int ExTime { get; set; }
     public string Name { get; set; }
     public string FileName { get; set; }
     public string TypeName { get; set; }
     public string ImageIcon { get; set; }
     public string ImageFon { get; set; }
-    public string IdProcess { get; set; }
 
     public static List<Program> programsList = new List<Program>();
+
+    public static void DataValidation(string nameProg, string typeName, string iconName, string fileName)
+    {
+      bool error = false;
+
+      if ((iconName == null) & (fileName != null))
+      {
+        iconName = System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().LastIndexOf("Glauncher") + 10) + "questionmark.jpg";
+      }
+      if ((typeName == null) & (fileName != null))
+      {
+        typeName = "program";
+      }
+      if ((nameProg == "") & (nameProg == null) & (fileName != null))
+      {
+        nameProg = fileName.Substring(fileName.LastIndexOf(@"\") + 1, fileName.LastIndexOf("."));
+      }
+      if (fileName == null)
+      {
+        ErorData erorData = new ErorData();
+        erorData.ShowDialog();
+        error = true;
+      }
+      if (error == false)
+      {
+        AllPage.NewProgramButton(nameProg, typeName, iconName, fileName);
+      }
+      
+    }
   }
 
   [Serializable]
@@ -47,10 +77,9 @@ namespace Glauncher
 
     public static List<Game> gamesList = new List<Game>();
 
-    public Game(int indexAll, int indexGame, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
+    public Game(int indexAll, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
     {
       IndexAll = indexAll;
-      IndexGame = indexGame;
       Indent = indent;
       Name = name;
       FileName = fileName;
@@ -71,10 +100,9 @@ namespace Glauncher
 
     public static List<AppProgram> appsList = new List<AppProgram>();
 
-    public AppProgram(int index, int indexApp, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
+    public AppProgram(int index, int indent, string name, string fileName, string typeName, string imageIcon, string imageFon)
     {
       IndexAll = index;
-      IndexApp = indexApp;
       Indent = indent;
       Name = name;
       FileName = fileName;

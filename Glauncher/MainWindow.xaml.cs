@@ -35,7 +35,6 @@ namespace Glauncher
     }
 
     AllPage allPage = new AllPage();
-    AppPage appPage = new AppPage();
 
 
     private void SerializeXML(List<Program> programList, List<Game> gamesList, List<AppProgram> appsList)
@@ -118,13 +117,13 @@ namespace Glauncher
 
     private void Button_Click_Exit(object sender, RoutedEventArgs e) //Метод завершения работы программы
     {
-        SerializeXML(Program.programsList, Game.gamesList, AppProgram.appsList);
+      SerializeXML(Program.programsList, Game.gamesList, AppProgram.appsList);
 
 
       Application.Current.Shutdown();
     }
 
-    private void AddButton_Click(object sender, RoutedEventArgs e) //Открывает окно с добавлением программ
+    public void AddButton_Click(object sender, RoutedEventArgs e) //Открывает окно с добавлением программ
     {
       AddApp addApp = new AddApp();
       addApp.ShowDialog();
@@ -135,9 +134,6 @@ namespace Glauncher
       WorkField.Content = allPage;
     }
 
-    private void AppButton_Click(object sender, RoutedEventArgs e)
-    {
-      WorkField.Content = appPage;
-    }
+    
   }
 }

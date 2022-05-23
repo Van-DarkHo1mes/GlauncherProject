@@ -106,21 +106,19 @@
                 <ColumnDefinition Width="14.75"/>
                 <ColumnDefinition Width="145.25"/>
                 <ColumnDefinition Width="188"/>
-                <ColumnDefinition Width="188"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="188"/>
                 <ColumnDefinition Width="180"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource MenuButtonStyle}" Content="ВСЕ" Grid.Column="2" HorizontalAlignment="Left" Margin="30,33,0,0" VerticalAlignment="Top" Width="76" FontSize="23" FontFamily="Roboto Medium" Height="37" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Cursor="Arrow" Click="AllButton_Click" />
+            <Button Style="{StaticResource MenuButtonStyle}" Content="ВСЕ ПРОГРАММЫ" Grid.Column="1" HorizontalAlignment="Left" Margin="92,30,0,0" VerticalAlignment="Top" Width="236" FontSize="23" FontFamily="Roboto Medium" Height="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Cursor="Arrow" Click="AllButton_Click" Grid.ColumnSpan="2" />
 
-            <Button Style="{StaticResource MenuButtonStyle}" Content="Приложения" Grid.Column="3" HorizontalAlignment="Left" Margin="8,33,0,0" VerticalAlignment="Top" Width="162" FontSize="23" Height="37" FontFamily="Roboto Medium" Foreground="White" Click="AppButton_Click"/>
 
-            <Button Style="{StaticResource MenuButtonStyle}" Content="Игры" Grid.Column="4" Margin="82,33,30,0" VerticalAlignment="Top" FontSize="23" Height="37" FontFamily="Roboto Medium" Foreground="White"/>
 
             <Button Style="{StaticResource MenuButtonStyle}" Grid.Column="5" Margin="20,23,15,0" VerticalAlignment="Top" FontSize="18" Height="50" FontFamily="Calibri" Foreground="White" BorderBrush="White" Click="AddButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="\close.png" Margin="0,0,5,0" Width="24" Height="18" />
-                    <TextBlock Foreground="White" Width="107" FontFamily="Roboto Medium" ><Run Text="Добавить"/><LineBreak/><Run/><Run Text=""/><Run Text="приложение"/></TextBlock>
+                    <TextBlock Foreground="White" Width="107" FontFamily="Roboto Medium" ><Run Text="Добавить"/><LineBreak/><Run/><Run Text=""/><Run Text="программу"/></TextBlock>
                 </StackPanel>
 
             </Button>
@@ -145,11 +143,11 @@
 
             </Border>
 
-            <Image Margin="39,19,59,11" Source="\logo.png" Stretch="Fill" Width="47" Height="53" RenderTransformOrigin="0.455,0.46" Grid.Column="1"/>
+            <Image Margin="26,18,162,13" Source="\logo.png" Stretch="Fill" Width="47" Height="53" RenderTransformOrigin="0.455,0.46" Grid.ColumnSpan="2"/>
 
-            <Image Margin="140.25,5,4,0" Source="\stripe.png" Stretch="Fill" Grid.Column="1"/>
+            <Image Margin="47,3,135,1" Source="\stripe.png" Stretch="Fill" Grid.Column="1"/>
 
-            <Button Style="{StaticResource CloseButton}"   Grid.Column="5" Margin="131,-14,0,0" VerticalAlignment="Top" Width="24" Height="31" FontSize="25" FontFamily="Consolas" HorizontalAlignment="Left" Content="x" FontWeight="Bold" Click="Button_Click_Exit"/>
+            <Button Style="{StaticResource CloseButton}"   Grid.Column="5" Margin="169,-14,0,0" VerticalAlignment="Top" Width="24" Height="30" FontSize="25" FontFamily="Consolas" HorizontalAlignment="Left" Content="x" FontWeight="Bold" Click="Button_Click_Exit"/>
 
             <TextBlock HorizontalAlignment="Left" Margin="10,-7,0,0" TextWrapping="Wrap" Text="Glauncher" VerticalAlignment="Top" Width="106" Height="26" FontSize="17" FontFamily="Roboto Medium" Foreground="White" Grid.ColumnSpan="2"/>
 

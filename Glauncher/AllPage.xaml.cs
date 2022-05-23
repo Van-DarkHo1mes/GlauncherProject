@@ -14,6 +14,7 @@ using System.Diagnostics;
 using Microsoft.Win32;
 using System.Xml.Serialization;
 using System.IO;
+using System.Threading;
 
 namespace Glauncher
 {
@@ -29,23 +30,23 @@ namespace Glauncher
       gridInfo = GridInfo;
       gridFon = GridFon;
 
-
+      playButton.Click += (o, e) => playButton_Click(o, e, indexProg);
+      DeleteButton.Click += (o, e) => DeleteButton_Click(o, e, indexProg);
     }
 
-
-    
 
     private static List<Button> progButtons = new List<Button>(); //Лист всех кнопок
     private static List<Panel> gridButtons = new List<Panel>(); //Лист всех контейнеров кнопок
     private static List<String> processStartName = new List<String>();
     private static List<Process> processStart = new List<Process>();
+    private static List<Stopwatch> stopwatches = new List<Stopwatch>();
 
     private static FrameworkElement buttonProg;
 
 
     private static int indexProg = 0; //Индек активной программы
     private static int indent = 0; //Поле отступа следующей кнопки
-    public static int IndexAll { get; set; } //Поле проядка кнопок программ
+    public static int IndexAll = Program.programsList.Count; //Поле проядка кнопок программ
     private static bool openIndexInfo = false; //Флаг открытия окна информации
     private static string defoltFon = System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().LastIndexOf("Glauncher") + 10) + "BIF.jpg";
 
@@ -98,6 +99,16 @@ namespace Glauncher
       Margin = new Thickness(320, 0, 0, 20),
       VerticalAlignment = VerticalAlignment.Bottom,
       HorizontalAlignment = HorizontalAlignment.Center,
+
+    };
+
+    private static Style styleDeleteButton = Application.Current.FindResource("DeleteButton") as Style;
+    private static Button DeleteButton = new Button()
+    {
+      Style = styleDeleteButton,
+      Margin = new Thickness(20, 0, 0, 20),
+      VerticalAlignment = VerticalAlignment.Bottom,
+      HorizontalAlignment = HorizontalAlignment.Left,
 
     };
 
@@ -253,13 +264,14 @@ namespace Glauncher
 
       if (typeName == "game")
       {
-        Game game = new Game(IndexAll, 1,/* .IndexGame,*/indent, nameProg, fileName, typeName, iconName, defoltFon);
+        Game game = new Game(IndexAll, indent, nameProg, fileName, iconName, iconName, defoltFon);
 
         Game.gamesList.Add(game);
       }
+
       if (typeName == "appProgram")
       {
-        AppProgram appProgram = new AppProgram(IndexAll, AppPage.IndexApp, indent, nameProg, fileName, iconName, iconName, defoltFon);
+        AppProgram appProgram = new AppProgram(IndexAll, indent, nameProg, fileName, iconName, iconName, defoltFon);
 
         AppProgram.appsList.Add(appProgram);
       }
@@ -269,12 +281,14 @@ namespace Glauncher
 
 
 
-    private static void Programbtn_Click(object sender, RoutedEventArgs e) //Метод создания окна информации
+    public static void Programbtn_Click(object sender, RoutedEventArgs e) //Метод создания окна информации
     {
       buttonProg = (FrameworkElement)sender;
 
       if (openIndexInfo == false) //Создает фон окна информации
       {
+        
+
         Border borderFon = new Border()
         {
           Background = Brushes.Black,
@@ -318,18 +332,22 @@ namespace Glauncher
       }
       nameTextBlock.Text = Program.programsList[indexProg].Name;
 
+      
+      
+
       foreach (var process in processStartName)
       {
-        if(process == Program.programsList[indexProg].FileName)
+        if (process == Program.programsList[indexProg].FileName)
         {
           playButton.Content = "ЗАКРЫТЬ";
+          break;
         }
         else
         {
           playButton.Content = "ЗАПУСК";
         }
       }
-      playButton.Click += (o, e) => playButton_Click(o, e, indexProg);
+
 
       ImageBrush ib = new ImageBrush(); //Изображение на окне информации
       ib.ImageSource = new BitmapImage(
@@ -339,6 +357,7 @@ namespace Glauncher
       iconBorderFon.Background = ib;
 
       settingsButton.Click += (o, e) => SettingsButton_Click(o, e, indexProg);
+      
 
       ImageBrush ibf = new ImageBrush();
       ibf.Stretch = Stretch.Fill;
@@ -350,12 +369,13 @@ namespace Glauncher
 
       addFonButton.Click += AddFonButton_Click;
 
+      gridInfo.Children.Add(DeleteButton);
       gridInfo.Children.Add(nameTextBlock);
       gridInfo.Children.Add(playButton);
-      gridInfo.Children.Add(settingsButton);
       gridInfo.Children.Add(borderImageFon);
       gridInfo.Children.Add(addFonButton);
       gridInfo.Children.Add(iconBorderFon);
+      gridInfo.Children.Add(settingsButton);
 
     }
 
@@ -368,10 +388,12 @@ namespace Glauncher
 
 
 
-    private static void playButton_Click(object sender, RoutedEventArgs e, int indexProg) //Запускает или закрывает программу
+    private static void playButton_Click(object sender, RoutedEventArgs e, int indexProg) //Запускает и закрывает программу
     {
+
       bool stex = true; 
       int deli = -1;
+      int t = 0;
 
       foreach (var process in processStartName)
       {
@@ -381,23 +403,38 @@ namespace Glauncher
           foreach (var proc in processStart)
           {
             i++;
-            if (proc.ProcessName == Program.programsList[indexProg].IdProcess)
+            if (proc.Id == Program.programsList[indexProg].IdProcess)
             {
               stex = false;
               proc.Kill();
+              stopwatches[t].Stop();
+              TimeSpan ts = stopwatches[t].Elapsed;
+              
+              Program.programsList[indexProg].ExTime = ts.Hours * 3600 + ts.Minutes * 60 + ts.Seconds;
               deli = i - 1;
               playButton.Content = "ЗАПУСК";
             }
           }
         }
+        t++;
       }
 
       if (stex == true)
       {
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+        stopwatches.Add(stopwatch);
+
         var proc = Process.Start(Program.programsList[indexProg].FileName);
         processStartName.Add(Program.programsList[indexProg].FileName);
         processStart.Add(proc);
-        Program.programsList[indexProg].IdProcess = proc.ProcessName;
+        try
+        {
+          Program.programsList[indexProg].IdProcess = proc.Id;
+        }
+        catch (Exception)
+        {
+        }
         playButton.Content = "ЗАКРЫТЬ";
       }
 
@@ -420,7 +457,7 @@ namespace Glauncher
     {
 
 
-      if (newName != null)
+      if ((newName != null) & (newName != ""))
       {
         gridInfo.Children.Remove(nameTextBlock);
 
@@ -467,7 +504,7 @@ namespace Glauncher
       };
       if (fileDialog.ShowDialog() == true)
       {
-        var newIBF = (Border)gridInfo.Children[3];
+        Border newIBF = (Border)gridInfo.Children[3];
 
         ImageBrush ib = new ImageBrush();
         ib.Stretch = Stretch.UniformToFill;
@@ -480,6 +517,37 @@ namespace Glauncher
       }
     }
 
+    private static void DeleteButton_Click(object sender, RoutedEventArgs e, int indexProg)
+    {
+      try
+      {
+        for (int i = Program.programsList.Count - 1; i > 0; i--)
+        {
+          Program.programsList[i].Indent = Program.programsList[i - 1].Indent;
+          Program.programsList[i].IndexAll = Program.programsList[i - 1].IndexAll;
+        }
+      }
+      catch (Exception)
+      {
+      }
+      
+
+      Program.programsList.RemoveAt(indexProg);
+      gridButtons.Clear();
+      progButtons.Clear();
+      IndexAll--;
+
+      scrollfieldAll.Children.Clear();
+      gridInfo.Children.Clear();
+      openIndexInfo = false;
+      indent = 0;
+
+      for (int i = 0; i < Program.programsList.Count; i++)
+      {
+        var program = Program.programsList[i];
+        RecoveryProgramButton(program.Name, program.FileName, program.ImageIcon, program.FileName);
+      }
+    } 
 
   }
 }

@@ -1,0 +1,48 @@
+﻿<Window x:Class="Glauncher.ErorData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Glauncher"
+        mc:Ignorable="d"
+        Title="ErorData" Height="100" Width="300" WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="AddButton" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="23"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="border" 
+                        BorderThickness="1"
+                        Padding="4,2" 
+                        CornerRadius="3"
+                        BorderBrush="#B3B3B3">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Border CornerRadius="12" Background="Black" BorderBrush="White"  BorderThickness="1">
+        <Grid>
+            <TextBlock Foreground="White" Text="Введены некорректные данные!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" Margin="0,0,0,30"></TextBlock>
+            <Button Style="{DynamicResource AddButton}" Width="50" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="OkButton_Click" >
+                <TextBlock Text="OK" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+    </Border>
+</Window>
